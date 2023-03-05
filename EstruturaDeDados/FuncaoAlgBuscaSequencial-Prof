@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define MAX 10
+
+int posicao(int x, int *v){
+	int i;
+	for(i=0; i<MAX; i++){
+		if(x == v[i]){
+			return i;
+		}
+	}
+	return -1;
+}
+
+int main(){
+	int vet[MAX];
+	int i, valor, p;
+	srand(time(NULL));
+	for(i=0; i<MAX; i++){
+		vet[i] = rand() % 100;
+	}
+	printf("Qual o valor a ser pesquisado?: ");
+	scanf("%d", &valor);
+	
+	p = posicao(valor, vet);
+	
+	if(p == -1){
+		printf("%d nao se encontra no vetor.\n", valor);
+	}else{
+		printf("%d se encontra no indice %d do vetor.\n", valor, p);
+	}
+	printf("\nConferindo...\n\n");
+	
+	for(i=0; i<MAX; i++){
+		printf("%d => %d\n", i, vet[i]);
+	}
+	
+	
+	
+	return 0;
+}
