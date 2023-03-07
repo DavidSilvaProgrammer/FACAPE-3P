@@ -6,51 +6,42 @@
 #include <string.h>
 
 int main() {
-    int tamanho,l,i;
-    char nomes[tamanho][20],procurado[20];
+    int tamanho,l,x;
+    char procurado[20];
     
-    int buscaSeq(char *v, int tamanho, char procurado);
+    void buscaSeq(char v[][20], int tamanho, char procurado[20]);
     
     printf("Digite o numero de convidados da festa: ");
     scanf("%d",&tamanho);
+    char nomes[tamanho][20];
 
     printf("Tamanho: %d\n", tamanho);
     
-    for(l=1;l<tamanho;l++){
-        printf("Digite o nome do convidado da posicao %d: ",l+1);
+    for(l=0;l<tamanho;l++){
+        printf("Digite o nome do convidado da posicao %d: ",l);
         setbuf(stdin, 0);
         fgets(nomes[l], 20, stdin);
-        
     }
     printf("*******\n");
-    for (l=0;l<5;l++){
-        printf("Nome na posicao %d: %s", l+1, nomes[l]);
+    for (l=0;l<tamanho;l++){
+        printf("\n%s",nomes[l]);
     }
-    printf("*******\n");
-    printf("Digite o nome da pessoa que deseja procurar na lista de convidados da festa:\n");
-    setbuf(stdin,0);
+    
+    printf("\nDigite o nome que deseja procurar na lista:\n");
     fgets(procurado,20,stdin);
     
-    printf("Nome do procurado: %s", procurado);
+    printf("Nome procurado: %s", procurado);
     
-if (buscaSeq(nomes[20],tamanho, procurado[20]) == 5000){
-    printf("O nome procurado nao se encontra na lista");
-}else{
-    printf("O nome procurado encontra-se na posicao %d da lista",i);
-}
-
-
-
+buscaSeq(nomes,tamanho, procurado);
     
     return(0);
 }
 
-int buscaSeq(char *v, int tamanho, char procurado){
+void buscaSeq(char v[][20], int tamanho, char procurado[20]){
     for (int i=0;i<tamanho;i++){
-        if(procurado == v[i]){
-            return(i);
-        }else{
-            return 5000;
+        if(0 == strcmp(procurado,v[i])){
+            printf("O nome %s consta na lista de convidados", procurado);
+    
         }
     }
 }
