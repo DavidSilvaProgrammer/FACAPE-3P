@@ -6,7 +6,7 @@
 #include <string.h>
 
 int main() {
-    int tamanho,l;
+    int tamanho,l,x;
     char procurado[20];
     
     int buscaSeq(char *v, int tamanho, char procurado);
@@ -32,16 +32,23 @@ int main() {
     
     printf("Nome procurado: %s", procurado);
     
+    x= buscaSeq(nomes, tamanho, procurado);
+    if (x == 0){
+        printf("O nome %s consta na lista de convidados", procurado);
+    }else{
+        printf("O nome %s nao consta na lista de convidados", procurado);
+    }
+    
+    
     
     return(0);
 }
 
 int buscaSeq(char *v, int tamanho, char procurado){
     for (int i=0;i<tamanho;i++){
-        if(procurado == v[i]){
-            return(i);
-        }else{
-            return 5000;
+        if(0 == strcmp(procurado,v[i])){
+            return (0);
+    
         }
     }
 }
