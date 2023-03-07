@@ -40,8 +40,9 @@ buscaSeq(nomes,tamanho, procurado);
 void buscaSeq(char v[][20], int tamanho, char procurado[20]){
     for (int i=0;i<tamanho;i++){
         if(0 == strcmp(procurado,v[i])){
-            printf("O nome %s consta na lista de convidados", procurado);
-    
+            printf("O nome %s consta na lista de convidados na posicao %d\n", procurado,i+1);
+        }else{
+            printf("\nNome nao encontrado na posicao %d .\n",i+1);
         }
     }
 }
