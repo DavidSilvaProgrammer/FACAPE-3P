@@ -6,7 +6,7 @@
 #include <string.h>
 
 int main() {
-    int tamanho,l,i;
+    int tamanho,l;
     char procurado[20];
     
     int buscaSeq(char *v, int tamanho, char procurado);
@@ -14,19 +14,34 @@ int main() {
     printf("Digite o numero de convidados da festa: ");
     scanf("%d",&tamanho);
     char nomes[tamanho][20];
-    
+
     printf("Tamanho: %d\n", tamanho);
     
     for(l=0;l<tamanho;l++){
-        printf("Digite o nome do convidado da posicao %d: ",l+1);
+        printf("Digite o nome do convidado da posicao %d: ",l);
         setbuf(stdin, 0);
         fgets(nomes[l], 20, stdin);
     }
-        for (l=0;l<tamanho;l++){
-            printf("\n%s",nomes[l]);
-        }
-
+    printf("*******\n");
+    for (l=0;l<tamanho;l++){
+        printf("\n%s",nomes[l]);
+    }
     
-
+    printf("\nDigite o nome que deseja procurar na lista:\n");
+    fgets(procurado,20,stdin);
+    
+    printf("Nome procurado: %s", procurado);
+    
+    
     return(0);
+}
+
+int buscaSeq(char *v, int tamanho, char procurado){
+    for (int i=0;i<tamanho;i++){
+        if(procurado == v[i]){
+            return(i);
+        }else{
+            return 5000;
+        }
+    }
 }
