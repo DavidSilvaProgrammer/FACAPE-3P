@@ -13,9 +13,11 @@ int main() {
     
     printf("Digite o numero de convidados da festa: ");
     scanf("%d",&tamanho);
+
+    printf("Tamanho: %d\n", tamanho);
     
-    for(l=0;l<tamanho;l++){
-        printf("Digite o nome do convidado a posicao %d: ",l+1);
+    for(l=1;l<tamanho;l++){
+        printf("Digite o nome do convidado da posicao %d: ",l+1);
         setbuf(stdin, 0);
         fgets(nomes[l], 20, stdin);
         
