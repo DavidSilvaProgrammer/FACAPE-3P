@@ -3,7 +3,7 @@
 #include <locale.h>
 
 
-struct tp_endereço
+struct tp_endereco
 {
     char rua[40];
     int numero;
@@ -28,15 +28,13 @@ struct cadastro_cliente
     struct tp_endereco endereco;
     
     struct tp_data_nascimento data_nascimento;
-};
-
-cad_cliente[2];
+} cad_cliente[2];
 
 //programa principal
 int main() {
 
     setlocale(LC_ALL,"Portuguese");
-    for (ii=0;i<2;i++){
+    for (int i=0;i<2;i++){
         printf("\n\nNome do cliente...........:");
         fflush(stdin);
         gets(cad_cliente[i].nome_cliente);
@@ -48,8 +46,6 @@ int main() {
         fflush(stdin);
         gets(cad_cliente[i].endereco.rua);
         
-        printf("Digite o numero.................");
-        scanf("%d",&cad_cliente[i].endereco);
         
         printf("\nDigite o numero ...............:");
         scanf("%d",&cad_cliente[i].endereco.numero);
@@ -74,14 +70,14 @@ int main() {
     }
     // fim da coleta
     
-    for(i=0;i<2;i++){
+    for(int i=0;i<2;i++){
         printf("\n Nome........: %s",cad_cliente[i].nome_cliente);
         printf("\n Rua........: %s", cad_cliente[i].endereco.rua);
-        printf("\n Numero......: %s",cad_cliente[i].endereco.numero);
-        printf("\n Bairro......: %d",cad_cliente[i].endereco.bairro);
-        printf("\n Cidade......: %d",cad_cliente[i].endereco.cidade);
-        printf("\n Estado......: %d",cad_cliente[i].endereco.cep");
-        printf("\n CEP......: %d",cad_cliente[i].endereco.cep");
+        printf("\n Numero......: %d",cad_cliente[i].endereco.numero);
+        printf("\n Bairro......: %s",cad_cliente[i].endereco.bairro);
+        printf("\n Cidade......: %s",cad_cliente[i].endereco.cidade);
+        printf("\n Estado......: %d",cad_cliente[i].endereco.cep);
+        printf("\n CEP......: %d",cad_cliente[i].endereco.cep);
         
         printf("\n dia de nasc: %d",cad_cliente[i].data_nascimento.dia);
         printf("\n dia de nasc: %d",cad_cliente[i].data_nascimento.mes);
