@@ -9,7 +9,7 @@ struct tp_endereco
     int numero;
     char bairro[40];
     char cidade[40];
-    char estado[3];
+    char estado[40];
     int cep;
 };
 
@@ -35,8 +35,12 @@ int main() {
 
     setlocale(LC_ALL,"Portuguese");
     for (int i=0;i<2;i++){
+        
+        printf("\nCadastro %d:\n",i+1);
+        
         printf("\n\nNome do cliente...........:");
         fflush(stdin);
+        setbuf(stdin, 0);
         gets(cad_cliente[i].nome_cliente);
         
         printf("\nDigite o telefone do cliente...:");
@@ -44,6 +48,7 @@ int main() {
         
         printf("\nDigite a rua...................:");
         fflush(stdin);
+        setbuf(stdin, 0);
         gets(cad_cliente[i].endereco.rua);
         
         
@@ -52,31 +57,44 @@ int main() {
         
         printf("\nBairro.........................");
         fflush(stdin);
+        setbuf(stdin, 0);
         gets(cad_cliente[i].endereco.bairro);
         
         printf("\nCidade..........................");
         fflush(stdin);
+        setbuf(stdin, 0);
         gets(cad_cliente[i].endereco.cidade);
         
         printf("\nEstado.........................: ");
         fflush(stdin);
-        gets(cad_cliente[i].endereco.cep);
+        setbuf(stdin, 0);
+        gets(cad_cliente[i].endereco.estado);
+        
+        printf("\CEP.........................: ");
+        scanf("%d",&cad_cliente[i].endereco.cep);
+        fflush(stdin);
+        setbuf(stdin, 0);
         
         printf("\nDia de nascimento..................:");
         scanf("%d",&cad_cliente[i].data_nascimento.dia);
         
-        printf("\nDia de nascimento....................:");
-        scanf("%d",&cad_cliente[i].data_nascimento.dia);
+        printf("\nMes de nascimento..................:");
+        scanf("%d",&cad_cliente[i].data_nascimento.mes);
+        
+        printf("\nAno de nascimento....................:");
+        scanf("%d",&cad_cliente[i].data_nascimento.ano);
+        
     }
     // fim da coleta
     
     for(int i=0;i<2;i++){
+        printf("\n***********************");
         printf("\n Nome........: %s",cad_cliente[i].nome_cliente);
         printf("\n Rua........: %s", cad_cliente[i].endereco.rua);
         printf("\n Numero......: %d",cad_cliente[i].endereco.numero);
         printf("\n Bairro......: %s",cad_cliente[i].endereco.bairro);
         printf("\n Cidade......: %s",cad_cliente[i].endereco.cidade);
-        printf("\n Estado......: %d",cad_cliente[i].endereco.cep);
+        printf("\n Estado......: %s",cad_cliente[i].endereco.estado);
         printf("\n CEP......: %d",cad_cliente[i].endereco.cep);
         
         printf("\n dia de nasc: %d",cad_cliente[i].data_nascimento.dia);
