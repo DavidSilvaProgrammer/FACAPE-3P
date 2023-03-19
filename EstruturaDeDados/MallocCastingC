@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int *p= (int *) malloc(sizeof(int));
+    if(p==NULL){
+        printf("malloc nao funcionou");
+    }
+    /*Obs.: ele não quis usar o else depois não sei por quê
+    /Obs.2: size_t é um tipo de dado padrão que foi definido na linguagem c, é um tipo de dado inteiro sempre positivo.
+        Foi colocado para simplificar o uso do malloc e também
+        porque não existe um tamanho de memória negativo.
+        size_t equivale ao unsigned
+    
+    */
+    printf("%i",*p);
+    
+    return 0;
+}
