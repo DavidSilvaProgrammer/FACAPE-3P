@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *x;
+    x=calloc(1,sizeof(char));
+    if (x == NULL){
+        printf("\nMemoria nao foi alocada.");
+    }else{
+        printf("Momoria alocada com sucesso");
+        printf("\nx: %c\n",*x); //memória alocada e zerada pelo calloc antes da atribuição, retornando um ponto por ser char.
+        *x="H";
+        printf("x: %c\n",*x);
+    }
+
+    return 0;
+}
+
+/*Se quiser pode fazer:
+if(x){
+    printf("Alocado");
+}else{
+    printf("Erro ao alocar memoria\n");
+}
+
+Também pode:
+ if (x != NULL){
+        printf("\nMemoria alocada.");
+
+*/
