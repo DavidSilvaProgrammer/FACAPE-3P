@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void imprimir(int **m,int l,int c){
+    int i,j;
+    for(i=0;i<l;i++){
+        for(j=0;j<c;j++){
+            printf("%2d ",m[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int **mat,i,j;
+    
+    //aloca um vetor de ponteiros para inteiros
+    mat=malloc(4*sizeof(int*));
+    
+    //cada posição do vetor aponta pra outro vetor
+    for(i=0;i<4;i++){
+        mat[i]=malloc(3*sizeof(int));
+        
+        srand(time(NULL));
+    }
+    //gera números aleatórios para preencher a matriz
+    for(i=0;i<4;i++){
+        for(j=0;j<3;j++){
+            mat[i][j]=rand()%100;
+        }
+    }
+    imprimir(mat,4,3);
+
+    return 0;
+}
