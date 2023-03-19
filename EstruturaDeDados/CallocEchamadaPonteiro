@@ -3,12 +3,19 @@
 
 int main() {
     int *p;
-    p=(int *) calloc(5,sizeof(int));
+    p=(int *) calloc(10,sizeof(int));
     *(p+1)=10;
     printf("%i",*(p+1));
-    /*Obs.:Apenas *p equivale ao índice zero do vetor. E +1 ao índice 1. Na locação dinamica, também pode se usar 
-    o metódo comum de vetor, p[1] nesse caso para encontrar o resultado 10.
-    */
+    //Obs.:Apenas *p equivale ao índice zero do vetor. E +1 ao índice 1. 
+    Na locação dinamica, também pode se usar o metódo comum de vetor, 
+    p[1] nesse caso para encontrar o resultado 10.
+    
+    printf("\nImpressao ponteiro: Endereço e valor:\n");
+    int i=0;
+    for(i=0;i<10;++i){
+        //Obs.: Ele colocou o ++ antes do i mesmo assim deu certo
+        printf("Endereco de p%i = %p | Valor de p%i = %i\n",i,(p+i),i,*(p+i));
+    }
     
     return 0;
 }
