@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *p;
+    p=(int *) calloc(5,sizeof(int));
+    *(p+1)=10;
+    printf("%i",*(p+1));
+    /*Obs.:Apenas *p equivale ao índice zero do vetor. E +1 ao índice 1. Na locação dinamica, também pode se usar 
+    o metódo comum de vetor, p[1] nesse caso para encontrar o resultado 10.
+    */
+    
+    return 0;
+}
