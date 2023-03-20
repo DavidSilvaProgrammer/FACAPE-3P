@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+void escrevaValor(); //prototipo da função escrevaValor
+
+int main() { //função principal
+    setlocale(LC_ALL,"");
+    //printf("O numero é %d\n",numero);
+    escrevaValor();
+
+    return 0;
+}
+
+void escrevaValor(){ //função em sí
+    int numero=15;
+    int dobro = numero*2;
+    printf("% o dobro é %d\n", dobro);
+}
