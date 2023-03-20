@@ -1,0 +1,27 @@
+//Saída: 70 5
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int x=0,w=0,n=0;
+
+int ff(int y){
+    n=n+1;
+    if (y<2){
+        return 1;
+    }
+    else{
+        return y*ff(y-1);
+    }
+}
+
+int main() {
+    x=5;
+    n=0;
+    w=ff(x);
+    w=w-50;
+    printf("%d %d",w,n);
+
+
+    return 0;
+}
