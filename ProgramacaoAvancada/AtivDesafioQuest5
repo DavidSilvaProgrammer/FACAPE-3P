@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int nr,xy,m,n;
+
+int fortaleza(int sobral){
+    if( sobral < 2){
+        return 1;
+    }else{
+        sobral*fortaleza(sobral-1);
+    }
+}
+
+int main() {
+    xy=17;
+    m= xy%13;
+    n=fortaleza(m)+9;
+    printf("M = %4d N = %4d",m,n);
+    
+    
+
+    return 0;
+}
