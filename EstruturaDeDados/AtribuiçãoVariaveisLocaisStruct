@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//atribuindo valores a variaveis locais de struct
+
+struct ponto{
+        int x,y;
+};
+void imprime_valor(int n){
+    printf("Valor = %d\n",n);
+}
+
+int main() {
+    //Passando um campo por valor
+    struct ponto p1={10,20};
+    //método interessante de atribuir variaveis locais de um
+    //struct
+    imprime_valor(p1.x);
+    imprime_valor(p1.y);
+    
+    /*Funções int como parametro estão funcionando somente porque as variaveis locais do struct são int
+    */
+    
+    return 0;
+}
