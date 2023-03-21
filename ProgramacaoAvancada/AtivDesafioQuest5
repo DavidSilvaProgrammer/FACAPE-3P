@@ -7,7 +7,7 @@ int fortaleza(int sobral){
     if( sobral < 2){
         return 1;
     }else{
-        sobral*fortaleza(sobral-1);
+        return sobral*fortaleza(sobral-1);
     }
 }
 
