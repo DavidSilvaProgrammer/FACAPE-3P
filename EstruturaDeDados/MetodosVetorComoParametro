@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    /*passando um array "Por referência"
+    Métodos aceitos:
+    void imprime(int *m,int n);
+    void imprime(int m[]),int n);
+    void imprime(int m[5],int n);
+    
+    n representa o tamanho do vetor, mesmo colocando o cinco no
+    vetor, isso não serve para identificar que o vetor tem
+    5 elementos, uma vez que este só pode ser passado por referência, mesmo que aperentemente usando colchete possa-se pensar que é possível por valor.
+    */
+    return 0;
+}
