@@ -5,6 +5,10 @@ void imprime(int *n,int m){
     int i;
     for(i=0;i<m;i++){
         printf("%d \n",n[i]);
+        /*n[i] não precisa de * na frente para representar
+        o valor do ponteiro, justamente porque já é subentendido
+        que vetor é passado somento por referência
+        */
     }
 }
 int main() {
