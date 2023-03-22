@@ -2,14 +2,21 @@
 #include <stdlib.h>
 
 void quickSort(int *v,int inicio,int fim){
+    int l;
+    for(l=0;l<fim;l++){
+        printf("%d\n",v[l]);
+    }
     int pivo;
     if(fim>inicio){
         pivo=particiona(v,inicio,fim);
-        quickSort(V,inicio,pivo-1);
-        quickSort(V,pivo+1,fim);
+        quickSort(v,inicio,pivo-1);
+        quickSort(v,pivo+1,fim);
         /*Separa os dados em 2 partições
         Chama a função para as metades
         */
+    }
+    for(l=0;l<fim;l++){
+        printf("%d\n",v[l]);
     }
 }
 /*exemplo chamando função particiona(V,0,6);
@@ -17,34 +24,36 @@ Inicio recebe o índice 0 e final o índice 6, último
 índice de um certo vetor
 
 */
-int particiona(int *V,int inicio,int final){
+int particiona(int *v,int inicio,int final){
     int esq,dir,pivo,aux;
     esq=inicio;
     dir=final;
-    pivo=V[inicio];
+    pivo=v[inicio];
     while(esq<dir){
         esq++;
-        while(V[esq]<=pivo){
+        while(v[esq]<=pivo){
             //Avança posição da esquerda
             esq++;
         }
-        while(V[dir]>pivo){
+        while(v[dir]>pivo){
             //Recua posição da direita
             dir--;
         }
         if(esq<dir){
             //Troca esq e dir
-            aux=V[esq];
-            V[esq]=V[dir];
-            V[dir]=aux;
+            aux=v[esq];
+            v[esq]=v[dir];
+            v[dir]=aux;
         }
     }
-    V[inicio]=V[dir];
-    V[dir]=pivo;
+    v[inicio]=v[dir];
+    v[dir]=pivo;
     return dir;
 
 int main() {
     int vet[7]={23,4,67,-8,90,54,21};
+    quickSort(vet,0,6);
+
     
     return 0;
 }
