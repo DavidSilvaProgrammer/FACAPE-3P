@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct aluno{
+    int matricula;
+    char nome[30];
+    float n1,n2,n3;
+};
+
+int comparaNome(const void *a,const void * b){
+    int r=strcmp((*(struct aluno*)a).nome,(*(struct aluno*)b).nome);
+    if(r==0){
+        return 0;//iguais
+    }else{
+        if(r<0){
+            return -1;//vem antes
+        }else{
+            return 1;//vem depois
+        }
+    }
+}
+
+int main() {
+    int i;
+    struct aluno v[4]={{2,"Andre",9.5,7.8,8.5},{4,"Ricardo",7.5,8.7,6.8},{1,"Bianca",9.7,6.7,8.4},{3,"Ana",5.7,6.1,7.4}};
+    
+    qsort(v,4,sizeof(struct aluno),comparaNome);
+    
+    for(i=0;i<4;i++){
+        printf("%d %s\n%2.1f\n%0.1f\n%0.1f\n",v[i].matricula,v[i].nome,v[i].n1,v[i].n2,v[i].n3);
+    }
+
+    return 0;
+}
