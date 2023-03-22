@@ -2,10 +2,7 @@
 #include <stdlib.h>
 
 void quickSort(int *v,int inicio,int fim){
-    int l;
-    for(l=0;l<fim;l++){
-        printf("%d\n",v[l]);
-    }
+    
     int pivo;
     if(fim>inicio){
         pivo=particiona(v,inicio,fim);
@@ -15,9 +12,7 @@ void quickSort(int *v,int inicio,int fim){
         Chama a função para as metades
         */
     }
-    for(l=0;l<fim;l++){
-        printf("%d\n",v[l]);
-    }
+    
 }
 /*exemplo chamando função particiona(V,0,6);
 Inicio recebe o índice 0 e final o índice 6, último
@@ -49,11 +44,27 @@ int particiona(int *v,int inicio,int final){
     v[inicio]=v[dir];
     v[dir]=pivo;
     return dir;
+}
 
 int main() {
     int vet[7]={23,4,67,-8,90,54,21};
+    int l,fim=7;
+    for(l=0;l<fim;l++){
+        printf("%d ",vet[l]);
+    }
     quickSort(vet,0,6);
-
+    
+    printf("**************************");
+    
+    for(l=0;l<fim;l++){
+        printf("%d ",vet[l]);
+    }
+    
+    /*
+    Cuidado para não confundi. O indice inicial e o indice final que devem ser passados como parametros devem ser os originais. 
+    Nesse caso 0,6 respectivamente. Diferente do momento que eu chamei o vetor por for que coloquei o fim mais do que o indice 
+    porque a terminação do laço só vai até uma casa antes.
+    */
     
     return 0;
 }
