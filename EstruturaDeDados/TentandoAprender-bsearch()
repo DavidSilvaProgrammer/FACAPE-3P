@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int compareints(const void * a, const void * b){
+    return (*(int*)a- *(int*)b);
+}
+
+int main() {
+    int values[10];
+    int n,key;
+    
+    scanf("%d",&n);
+    for (int i=0;i<n;i++){
+        scanf("%d",&key);
+    }
+    scanf("%d",&key);
+    
+    int *pItem;
+    qsort(values,n,sizeof(int),compareints);
+    //to sort the ata in ascening order
+    
+    pItem = (int*) bsearch(&key,values,n,sizeof(int),compareints);
+    
+    if (pItem != NULL){
+        printf("%d is in the array.\n,",pItem);
+    }else{
+        printf("%d is not in the array.\n",key);
+    }
+    
+    return 0;
+}
