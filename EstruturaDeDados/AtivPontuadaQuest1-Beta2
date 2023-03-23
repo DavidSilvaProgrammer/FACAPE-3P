@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct aluno{
+    char nome[81];
+    float nota;
+};
+
+int comparaAluno(const void *a,const void * b){
+    if((*(struct aluno*)a).nota ==(*(struct aluno*)b).nota){
+        int r=strcmp((*(struct aluno*)a).nome,(*(struct aluno*)b).nome);
+    if(r==0){
+        return 0;//iguais
+    }else{
+        if(r<0){
+            return -1;//vem antes
+        }else{
+            return 1;//vem depois
+        }
+    }
+    }else{
+        if((*(struct aluno*)a).nota > (*(struct aluno*)b).nota){
+            return -1;//vem antes
+        }else{
+            return 1;//vem depois
+        }
+    }
+}
+
+int main() {
+    int i;
+    
+    int quant;
+    struct aluno *v;
+    
+    
+    printf("Digite a quantidade de alunos:\n");
+    scanf("%d",&quant);
+    v=calloc(quant,sizeof(struct aluno));
+    if (v == NULL){
+        printf("\nMemoria nao foi alocada.");
+    }else{
+        printf("Memoria alocada com sucesso!\n");
+        for(i=0;i<quant;i++){
+            printf("Digite o nome do aluno numero %d: \n",i+1);
+            setbuf(stdin, 0);
+            fgets(v[i].nome,81,stdin);
+            setbuf(stdin, 0);
+            printf("Digite a nota do aluno numero %d: \n",i+1);
+            scanf("%f",&v[i].nota);
+        }
+    }
+    
+    qsort(v,quant,sizeof(struct aluno),comparaAluno);
+    
+    for(i=0;i<quant;i++){
+        printf("Posicao %d: \n%s\t%2.1f\n",i+1,v[i].nome,v[i].nota);
+    }
+
+    return 0;
+}
