@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct aluno{
+    char nome[81];
+    float nota;
+};
+
+int comparaAluno(const void *a,const void * b){
+    if((*(struct aluno*)a).nota ==(*(struct aluno*)b).nota){
+        return 0;//iguais
+    }else{
+        if((*(struct aluno*)a).nota < (*(struct aluno*)b).nota){
+            return -1;//vem antes
+        }else{
+            return 1;//vem depois
+        }
+    }
+}
+
+int main() {
+    int i;
+    struct aluno v[4]={{"Andre",9.5},{"Ricardo",7.5},{"Bianca",9.7},{"Ana",5.7}};
+    
+    qsort(v,4,sizeof(struct aluno),comparaAluno);
+    
+    for(i=0;i<4;i++){
+        printf("%s\n%2.1f\n",v[i].nome,v[i].nota);
+    }
+
+    return 0;
+}
