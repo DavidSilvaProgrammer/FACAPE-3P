@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+char cmpfunc(const void * a, const void * b)
+{
+   return strcmp(( *(char*)a, *(char*)b ));
+}
+
+char values[3] = {"5", "2", "2" };
+
+int main ()
+{
+   char *item;
+   char key[3] ="5";
+
+   /* 使用 bsearch() 在数组中查找值 32 */
+   item = (int*) bsearch (&key, values, 3, sizeof (**char), cmpfunc);
+   if( item != NULL ) 
+   {
+      printf("Found item = %d\n", *item);
+   }
+   else 
+   {
+      printf("Item = %d could not be found\n", *item);
+   }
+   
+   return(0);
+}
