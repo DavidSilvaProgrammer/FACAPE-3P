@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct aluno{
+    char nome[81];
+    float nota;
+};
+
+struct aluno2 {
+char nome[81];
+char mat[8];
+char turma;
+char email[41];
+};
+typedef struct aluno Aluno;
+
+int comparaAluno(const void *a,const void * b){
+    if((*(struct aluno*)a).nota ==(*(struct aluno*)b).nota){
+        int r=strcmp((*(struct aluno*)a).nome,(*(struct aluno*)b).nome);
+    if(r==0){
+        return 0;//iguais
+    }else{
+        if(r<0){
+            return -1;//vem antes
+        }else{
+            return 1;//vem depois
+        }
+    }
+    }else{
+        if((*(struct aluno*)a).nota > (*(struct aluno*)b).nota){
+            return -1;//vem antes
+        }else{
+            return 1;//vem depois
+        }
+    }
+}
+
+void entradaDados(int quant,struct aluno *v){
+    for(int i=0;i<quant;i++){
+            printf("Digite o nome do aluno numero %d: \n",i+1);
+            setbuf(stdin, 0);
+            fgets(v[i].nome,81,stdin);
+            setbuf(stdin, 0);
+            printf("Digite a nota do aluno numero %d: \n",i+1);
+            scanf("%f",&v[i].nota);
+    }
+}
+
+
+void imprimirDados(int quant,struct aluno *v){
+    for(int i=0;i<quant;i++){
+        printf("Posicao %d: \n%s\t%2.1f\n",i+1,v[i].nome,v[i].nota);
+    }
+}
+
+/* Função de comparação: char* e Aluno** */
+int comp_alunos (const void* p1, const void* p2){
+/* converte ponteiros genéricos para ponteiros específicos */
+char* s = (char*)p1;
+Aluno **pa = (Aluno**)p2;
+/* faz a comparação */
+return strcmp(s,(*pa)->nome);
+}
+
+
+int main() {
+    int i;
+    
+    int quant;
+    struct aluno *v;
+    char key[81],*busca;
+    Aluno y[3]={{"Joao"},{"Alberto"},{"Pedro"}};
+    Aluno *w;
+    w=y;
+    
+    
+    printf("Digite a quantidade de alunos:\n");
+    scanf("%d",&quant);
+    v=calloc(quant,sizeof(struct aluno));
+    if (v == NULL){
+        printf("\nMemoria nao foi alocada.");
+    }else{
+        printf("Memoria alocada com sucesso!\n");
+        
+        entradaDados(quant,v);
+    }
+    
+    qsort(v,quant,sizeof(struct aluno),comparaAluno);
+    
+    imprimirDados(quant,v);
+    
+    printf("Digite o nome que deseja procurar:\n");
+    setbuf(stdin, 0);
+    fgets(key,81,stdin);
+    setbuf(stdin, 0);
+    
+    
+    busca = (char**)bsearch(&key,w->nome,3,sizeof(Aluno),comp_alunos);
+
+    if (busca == NULL){
+    printf("Elemento nao encontrado.\n");
+    }else{
+    //printf("Elemento encontrado no indice: %d\n", busca-w);
+    printf("Nome encontrado no vetor.");
+    }
+    /*busca = (char*)bsearch(key, v, quant, sizeof(struct aluno), comparaAluno);*/
+    
+
+    
+    return 0;
+}
