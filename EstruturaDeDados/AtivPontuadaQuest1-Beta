@@ -8,9 +8,18 @@ struct aluno{
 
 int comparaAluno(const void *a,const void * b){
     if((*(struct aluno*)a).nota ==(*(struct aluno*)b).nota){
+        int r=strcmp((*(struct aluno*)a).nome,(*(struct aluno*)b).nome);
+    if(r==0){
         return 0;//iguais
     }else{
-        if((*(struct aluno*)a).nota < (*(struct aluno*)b).nota){
+        if(r<0){
+            return -1;//vem antes
+        }else{
+            return 1;//vem depois
+        }
+    }
+    }else{
+        if((*(struct aluno*)a).nota > (*(struct aluno*)b).nota){
             return -1;//vem antes
         }else{
             return 1;//vem depois
@@ -20,7 +29,7 @@ int comparaAluno(const void *a,const void * b){
 
 int main() {
     int i;
-    struct aluno v[4]={{"Andre",9.5},{"Ricardo",7.5},{"Bianca",9.7},{"Ana",5.7}};
+    struct aluno v[4]={{"Andre",9.7},{"Ricardo",7.5},{"Bianca",9.7},{"Ana",7.5}};
     
     qsort(v,4,sizeof(struct aluno),comparaAluno);
     
