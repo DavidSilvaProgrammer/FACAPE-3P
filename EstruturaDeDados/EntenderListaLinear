@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Estrutura de cada elemento da lista
+typedef struct node {
+    int value;
+    struct node *next;
+} Node;
+
+// Função que insere um elemento no início da lista
+void insert(Node **head, int value) {
+    Node *newNode = malloc(sizeof(Node));
+    newNode->value = value;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+// Função que imprime todos os elementos da lista
+void printList(Node *head) {
+    Node *current = head;
+    while (current != NULL) {
+        printf("%d ", current->value);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    Node *head = NULL; // Inicializa a lista vazia
+
+    // Insere alguns elementos na lista
+    insert(&head, 5);
+    insert(&head, 10);
+    insert(&head, 15);
+
+    // Imprime a lista
+    printf("Lista: ");
+    printList(head);
+
+    return 0;
+}
+
+
+/*
+Neste exemplo, criamos uma lista linear simples que armazena inteiros. A estrutura Node representa cada elemento da lista e 
+contém um campo value para armazenar o valor do elemento e um ponteiro next para apontar para o próximo elemento da lista. 
+A função insert insere um novo elemento no início da lista, criando um novo nó e ajustando os ponteiros adequadamente. 
+A função printList imprime todos os elementos da lista, percorrendo a lista a partir do início até chegar no final. 
+No main, criamos uma lista vazia, inserimos alguns elementos e imprimimos a lista resultante.
+
+Explicação bloco de código:
+
+void insert(Node **head, int value) {
+    Node *newNode = malloc(sizeof(Node));
+    newNode->value = value;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+
+Este bloco de código é uma função que insere um novo nó com um valor inteiro no início de uma lista encadeada. 
+A lista encadeada é representada por um ponteiro para o primeiro nó, que é chamado de cabeça ou head.
+
+O ponteiro head tem dois asteriscos (**), o que significa que é um ponteiro para um ponteiro. Isso ocorre porque a função precisa 
+modificar o ponteiro head para que ele aponte para o novo nó que está sendo inserido.
+
+O primeiro asterisco (*head) é usado para obter o valor do ponteiro head, que é um ponteiro para o primeiro nó. O segundo asterisco 
+(*head) é usado para modificar o valor do ponteiro head, para que ele aponte para o novo nó inserido.
+
+O código começa alocando memória para um novo nó usando a função malloc. Em seguida, o valor a ser inserido é definido para o novo nó, 
+e o próximo ponteiro do novo nó é definido como o ponteiro head atual. 
+Por fim, o ponteiro head é atualizado para apontar para o novo nó, tornando-o o novo primeiro nó na lista encadeada.
+
+********************************
+
+Vale salientar que head não é uma matriz. Na verdade, head é um ponteiro para um ponteiro para um Node. Isso é indicado pelo fato 
+de que a declaração de head tem dois asteriscos: Node **head.
+
+Um ponteiro é uma variável que armazena o endereço de memória de outra variável. Em C, um ponteiro é denotado pelo uso do operador *. 
+Por exemplo, Node *p declara um ponteiro chamado p que aponta para um objeto do tipo Node.
+
+Um ponteiro para um ponteiro é uma variável que armazena o endereço de memória de outro ponteiro. 
+Em outras palavras, ele aponta para um ponteiro. Em C, um ponteiro para um ponteiro é denotado pelo uso de dois asteriscos: 
+Node **pp. Isso é útil quando precisamos alterar o valor de um ponteiro em uma função e essa alteração precisa ser refletida 
+na variável original quando a função retornar.
+
+No bloco de código fornecido, head é um ponteiro para um ponteiro para um Node. O primeiro asterisco na declaração de head indica 
+que ele é um ponteiro para um Node. O segundo asterisco indica que ele é um ponteiro para esse ponteiro. A função insert recebe um 
+ponteiro para um ponteiro para um Node e um valor inteiro como argumentos. Ele aloca memória para um novo nó, define o valor do novo 
+nó como o valor fornecido e define o próximo ponteiro do novo nó como o valor atual de *head. Em seguida, ele define o valor de *head 
+como o endereço de memória do novo nó, tornando o novo nó o novo nó cabeça da lista encadeada.
+
+
+*/
