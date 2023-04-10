@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// Função que realiza a busca sequencial
+int buscaSequencial(int array[], int n, int key) {
+    int i;
+    for (i = 0; i < n; i++) {
+        if (array[i] == key) {
+            return i;
+        }
+    }
+    return -1; // Retorna -1 se o elemento não foi encontrado
+}
+
+int main() {
+    int array[] = {10, 20, 30, 40, 50};
+    int n = sizeof(array) / sizeof(array[0]);
+    int key = 30;
+
+    int resultado = buscaSequencial(array, n, key);
+
+    if (resultado == -1) {
+        printf("Elemento não encontrado.\n");
+    } else {
+        printf("Elemento encontrado na posição %d.\n", resultado);
+    }
+
+    return 0;
+}
+
+
+/*
+Nesse exemplo, a função buscaSequencial recebe um array de inteiros, seu tamanho e a chave que deve ser procurada. 
+Em seguida, ela percorre o array sequencialmente e compara cada elemento com a chave até encontrá-la ou chegar ao final do array. 
+Se a chave for encontrada, a função retorna o índice em que ela foi encontrada. Caso contrário, a função retorna -1 para indicar 
+que a chave não foi encontrada.
+
+No main(), é criado um array de exemplo e a função buscaSequencial é chamada passando esse array, seu tamanho e a chave que deve 
+ser procurada. Depois, é verificado se a chave foi encontrada ou não e exibido uma mensagem correspondente.
+
+*/
