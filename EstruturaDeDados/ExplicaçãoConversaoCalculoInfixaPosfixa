@@ -1,0 +1,44 @@
+Para converter a expressão infixa 1 + 2 * 3 em posfixa, podemos seguir o seguinte processo:
+
+    Crie uma pilha vazia para armazenar os operadores.
+    Comece a percorrer a expressão infixa da esquerda para a direita.
+    Quando encontrar um operando, adicione-o à expressão posfixa.
+    Quando encontrar um operador, verifique se há algum operador na pilha com precedência maior ou igual ao operador atual. Se houver, remova esses operadores da pilha e adicione-os à expressão posfixa. Repita esse processo até que a pilha esteja vazia ou até que um operador com precedência menor seja encontrado.
+    Adicione o operador atual à pilha.
+    Continue percorrendo a expressão infixa até que todos os operadores e operandos tenham sido processados.
+    Remova qualquer operador restante da pilha e adicione-o à expressão posfixa.
+
+Aplicando esse processo à expressão 1 + 2 * 3, temos:
+
+    Pilha vazia.
+    O primeiro operando, 1, é adicionado à expressão posfixa.
+    O operador + é encontrado. A pilha está vazia, então o operador é adicionado à pilha.
+    O próximo operando, 2, é adicionado à expressão posfixa.
+    O operador * é encontrado. A pilha contém o operador +, que tem precedência menor do que *. O operador * é adicionado à pilha.
+    O próximo operando, 3, é adicionado à expressão posfixa.
+    Não há mais operadores ou operandos na expressão infixa. O operador * é removido da pilha e adicionado à expressão posfixa, seguido pelo operador +.
+    A expressão posfixa resultante é 1 2 3 * +.
+    
+  ************************************************************************
+
+
+
+Para calcular uma expressão posfixa, podemos seguir o seguinte processo:
+
+    Crie uma pilha vazia para armazenar os operandos.
+    Comece a percorrer a expressão posfixa da esquerda para a direita.
+    Quando encontrar um operando, adicione-o à pilha.
+    Quando encontrar um operador, remova os dois operandos mais recentes da pilha, aplique o operador a eles e coloque o resultado na pilha.
+    Continue percorrendo a expressão posfixa até que todos os operadores e operandos tenham sido processados.
+    O resultado final será o único valor restante na pilha.
+
+Aplicando esse processo à expressão posfixa 1 2 3 * +, temos:
+
+    Pilha vazia.
+    O primeiro operando, 1, é adicionado à pilha.
+    O próximo operando, 2, é adicionado à pilha.
+    O operador * é encontrado. Os dois operandos mais recentes da pilha são 2 e 3. O operador * é aplicado a eles, resultando em 6, que é adicionado à pilha.
+    O operador + é encontrado. Os dois operandos mais recentes da pilha são 1 e 6. O operador + é aplicado a eles, resultando em 7, que é adicionado à pilha.
+    Não há mais operadores ou operandos na expressão posfixa. A pilha contém apenas o resultado final, 7.
+
+Portanto, o resultado da expressão 1 + 2 * 3 na notação posfixa é 7.
