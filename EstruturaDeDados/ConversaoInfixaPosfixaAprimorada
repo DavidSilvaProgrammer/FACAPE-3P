@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define TAM_MAX 100
+
+// Protótipo da função precedence
+int precedence(char c);
+
+// Definir a estrutura da pilha
+typedef struct {
+    char itens[TAM_MAX];
+    int topo;
+} Pilha;
+
+// Funções da pilha
+void empilhar(Pilha *p, char item) {
+    if (p->topo == TAM_MAX - 1) {
+        printf("Erro: a pilha está cheia\n");
+        exit(EXIT_FAILURE);
+    }
+    p->itens[++(p->topo)] = item;
+}
+
+char desempilhar(Pilha *p) {
+    if (p->topo == -1) {
+        printf("Erro: a pilha está vazia\n");
+        exit(EXIT_FAILURE);
+    }
+    return p->itens[(p->topo)--];
+}
+
+char topo(Pilha *p) {
+    return p->itens[p->topo];
+}
+
+int estaVazia(Pilha *p) {
+    return p->topo == -1;
+}
+
+// Função que converte uma notação infixa para polonesa reversa
+void infixaParaPosfixa(char *exp) {
+    Pilha pilha;
+    pilha.topo = -1;
+    int i, j;
+    char c;
+
+    for (i = 0, j = -1; exp[i]; i++) {
+        c = exp[i];
+        if (isalnum(c)) {
+            exp[++j] = c;
+        } else if (c == '(') {
+            empilhar(&pilha, c);
+        } else if (c == ')') {
+            while (!estaVazia(&pilha) && topo(&pilha) != '(') {
+                exp[++j] = desempilhar(&pilha);
+            }
+            if (!estaVazia(&pilha) && topo(&pilha) != '(') {
+                printf("Erro: expressão inválida\n");
+                exit(EXIT_FAILURE);
+            } else {
+                desempilhar(&pilha);
+            }
+        } else {
+            while (!estaVazia(&pilha) && precedence(c) <= precedence(topo(&pilha))) {
+                exp[++j] = desempilhar(&pilha);
+            }
+            empilhar(&pilha, c);
+        }
+    }
+
+    while (!estaVazia(&pilha)) {
+        exp[++j] = desempilhar(&pilha);
+    }
+
+    exp[++j] = '\0';
+}
+
+// Função auxiliar que retorna a precedência de um operador
+int precedence(char c) {
+    switch (c) {
+        case '+':
+        case '-':
+            return 1;
+        case '*':
+        case '/':
+            return 2;
+        case '^':
+            return 3;
+        default:
+            return -1;
+    }
+}
+
+int main() {
+    char exp[TAM_MAX];
+    printf("Digite a expressão infixa: ");
+    fgets(exp, TAM_MAX, stdin);
+    exp[strcspn(exp, "\n")] = '\0';
+    infixaParaPosfixa(exp);
+    printf("A expressão em polonesa reversa é: %s\n", exp);
+    return 0;
+}
+
+
+/*
+A biblioteca ctype.h é uma biblioteca padrão em C que fornece funções para trabalhar com caracteres. Ela contém várias funções que são úteis para determinar se um determinado caractere é um dígito, letra, espaço em branco ou pontuação, entre outras propriedades.
+
+Algumas das funções mais comuns da biblioteca ctype.h são:
+
+    isalnum(): verifica se um caractere é uma letra ou um dígito;
+    isalpha(): verifica se um caractere é uma letra;
+    isdigit(): verifica se um caractere é um dígito decimal;
+    isspace(): verifica se um caractere é um espaço em branco (espaço, tabulação, nova linha, retorno de carro);
+    ispunct(): verifica se um caractere é um caractere de pontuação (como ponto, vírgula ou ponto-e-vírgula).
+
+Essas funções são frequentemente usadas para verificar a validade de entradas de usuário, como senhas, nomes de usuário e endereços de e-mail.
+*/
