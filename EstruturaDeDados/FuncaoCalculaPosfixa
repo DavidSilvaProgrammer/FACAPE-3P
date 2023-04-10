@@ -1,0 +1,30 @@
+// Função que calcula o resultado de uma expressão em polonesa reversa
+int evaluatePostfix(char* exp) {
+    Stack stack;
+    stack.top = -1;
+    int i, operand1, operand2;
+
+    for (i = 0; exp[i]; i++) {
+        if (isdigit(exp[i])) {
+            push(&stack, exp[i] - '0');
+        } else {
+            operand2 = pop(&stack);
+            operand1 = pop(&stack);
+            switch (exp[i]) {
+                case '+':
+                    push(&stack, operand1 + operand2);
+                    break;
+                case '-':
+                    push(&stack, operand1 - operand2);
+                    break;
+                case '*':
+                    push(&stack, operand1 * operand2);
+                    break;
+                case '/':
+                    push(&stack, operand1 / operand2);
+                    break;
+            }
+        }
+    }
+    return pop(&stack);
+}
