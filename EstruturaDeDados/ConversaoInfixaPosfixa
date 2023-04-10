@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_SIZE 100
+
+// Protótipo da função precedence
+int precedence(char c);
+
+// Definir a estrutura da pilha
+typedef struct {
+    char items[MAX_SIZE];
+    int top;
+} Stack;
+
+// Funções da pilha
+void push(Stack *s, char item) {
+    if (s->top == MAX_SIZE - 1) {
+        printf("Erro: a pilha está cheia\n");
+        exit(EXIT_FAILURE);
+    }
+    s->items[++(s->top)] = item;
+}
+
+char pop(Stack *s) {
+    if (s->top == -1) {
+        printf("Erro: a pilha está vazia\n");
+        exit(EXIT_FAILURE);
+    }
+    return s->items[(s->top)--];
+}
+
+char peek(Stack *s) {
+    return s->items[s->top];
+}
+
+int isEmpty(Stack *s) {
+    return s->top == -1;
+}
+
+// Função que converte uma notação infixa para polonesa reversa
+void infixToPostfix(char *exp) {
+    Stack stack;
+    stack.top = -1;
+    int i, j;
+    char c;
+
+    for (i = 0, j = -1; exp[i]; i++) {
+        c = exp[i];
+        if (isalnum(c)) {
+            exp[++j] = c;
+        } else if (c == '(') {
+            push(&stack, c);
+        } else if (c == ')') {
+            while (!isEmpty(&stack) && peek(&stack) != '(') {
+                exp[++j] = pop(&stack);
+            }
+            if (!isEmpty(&stack) && peek(&stack) != '(') {
+                printf("Erro: expressão inválida\n");
+                exit(EXIT_FAILURE);
+            } else {
+                pop(&stack);
+            }
+        } else {
+            while (!isEmpty(&stack) && precedence(c) <= precedence(peek(&stack))) {
+                exp[++j] = pop(&stack);
+            }
+            push(&stack, c);
+        }
+    }
+
+    while (!isEmpty(&stack)) {
+        exp[++j] = pop(&stack);
+    }
+
+    exp[++j] = '\0';
+}
+
+// Função auxiliar que retorna a precedência de um operador
+int precedence(char c) {
+    switch (c) {
+        case '+':
+        case '-':
+            return 1;
+        case '*':
+        case '/':
+            return 2;
+        case '^':
+            return 3;
+        default:
+            return -1;
+    }
+}
+
+int main() {
+    char exp[MAX_SIZE];
+    printf("Digite a expressão infixa: ");
+    fgets(exp, MAX_SIZE, stdin);
+    exp[strcspn(exp, "\n")] = '\0';
+    infixToPostfix(exp);
+    printf("A expressão em polonesa reversa é: %s\n", exp);
+    return 0;
+}
