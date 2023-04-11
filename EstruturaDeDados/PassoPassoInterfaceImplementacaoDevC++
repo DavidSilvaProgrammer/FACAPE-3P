@@ -1,0 +1,32 @@
+Para criar uma interface e uma implementação em linguagem C no Dev-C++, siga os seguintes passos:
+
+Passo 1: Abra o Dev-C++
+
+Passo 2: Crie um novo projeto clicando em "File" -> "New" -> "Project"
+
+Passo 3: Na janela "New Project", selecione "Console Application" e clique em "Go"
+
+Passo 4: Na próxima janela, escolha "C Project" e dê um nome ao projeto. Clique em "Finish".
+
+Passo 5: O Dev-C++ irá abrir um novo arquivo com o nome do projeto e extensão ".c". Este é o arquivo de implementação do seu programa. 
+Para criar o arquivo de interface, clique em "File" -> "New" -> "Header File".
+
+Passo 6: Na janela "New Header File", digite o nome do arquivo de interface e clique em "Save".
+
+Passo 7: Agora você tem um arquivo de interface (.h) e um arquivo de implementação (.c). 
+Adicione as declarações de funções que você deseja exportar da implementação para a interface.
+
+Passo 8: Para incluir o arquivo de interface em seu arquivo de implementação, use a diretiva de pré-processamento 
+#include. Por exemplo, se o nome do arquivo de interface for "interface.h", insira a seguinte linha 
+no início do arquivo de implementação:
+
+#include "interface.h"
+
+Passo 9: Escreva o código para implementar as funções que você declarou na interface.
+
+Passo 10: Para compilar e executar o seu programa, clique em "Execute" -> "Compile & Run". Verifique se não há erros na compilação.
+
+Passo 11: Se tudo estiver funcionando corretamente, você pode executar o seu programa clicando em "Execute" -> "Run".
+
+Lembre-se de salvar o seu projeto regularmente e utilizar boas práticas de programação, 
+como comentar o seu código e organizar as funções em módulos lógicos.
