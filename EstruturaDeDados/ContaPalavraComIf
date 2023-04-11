@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+int contar_palavras(char* frase);
+
+int main() {
+    char frase[100];
+    printf("Digite uma frase: ");
+    fgets(frase, 100, stdin);
+    int quantidade = contar_palavras(frase);
+    printf("A frase digitada tem %d palavras.\n", quantidade);
+    return 0;
+}
+
+int contar_palavras(char* frase) {
+    int quantidade = 0;
+    int tamanho = strlen(frase);
+    for (int i = 0; i < tamanho; i++) {
+        // Se o caractere atual é um espaço em branco ou uma quebra de linha,
+        // significa que encontramos uma palavra completa
+        if (frase[i] == ' ' || frase[i] == '\n') {
+            quantidade++;
+        }
+    }
+    // Adicionamos 1 ao final para contar a última palavra, que não é seguida por um espaço
+    quantidade++;
+    return quantidade;
+}
