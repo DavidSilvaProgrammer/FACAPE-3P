@@ -1,0 +1,49 @@
+/*Em linguagem C, um tipo abstrato de dado (TAD) pode ser criado utilizando estruturas e ponteiros. 
+A ideia é encapsular a implementação dos dados e fornecer uma interface pública para que os usuários 
+possam interagir com esses dados de forma segura.
+
+Exemplo simples de como criar um TAD em C para representar um número racional:
+*/
+
+
+// Definindo a estrutura do número racional
+typedef struct {
+   int numerador;
+   int denominador;
+} Racional;
+
+// Função para criar um novo número racional
+Racional* criar_racional(int numerador, int denominador) {
+   Racional* novo_racional = (Racional*) malloc(sizeof(Racional));
+   novo_racional->numerador = numerador;
+   novo_racional->denominador = denominador;
+   return novo_racional;
+}
+
+// Função para liberar a memória alocada pelo número racional
+void liberar_racional(Racional* racional) {
+   free(racional);
+}
+
+// Função para imprimir o número racional na tela
+void imprimir_racional(Racional* racional) {
+   printf("%d/%d", racional->numerador, racional->denominador);
+}
+
+// Função para somar dois números racionais
+Racional* somar_racionais(Racional* racional1, Racional* racional2) {
+   int novo_numerador = (racional1->numerador * racional2->denominador) + (racional2->numerador * racional1->denominador);
+   int novo_denominador = racional1->denominador * racional2->denominador;
+   return criar_racional(novo_numerador, novo_denominador);
+}
+
+int main() {
+   Racional* r1 = criar_racional(1, 2);
+   Racional* r2 = criar_racional(1, 3);
+   Racional* soma = somar_racionais(r1, r2);
+   imprimir_racional(soma);
+   liberar_racional(r1);
+   liberar_racional(r2);
+   liberar_racional(soma);
+   return 0;
+}
