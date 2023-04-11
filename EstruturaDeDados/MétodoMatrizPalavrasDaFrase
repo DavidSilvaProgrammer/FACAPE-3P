@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_FRASE 1000
+#define MAX_PALAVRA 50
+
+int main() {
+    char frase[MAX_FRASE], palavra[MAX_PALAVRA];
+    char matriz_palavras[MAX_FRASE][MAX_PALAVRA];
+    int i, j, k;
+    
+    printf("Digite uma frase: ");
+    fgets(frase, MAX_FRASE, stdin);
+    
+    i = 0;
+    j = 0;
+    k = 0;
+    
+    // separa as palavras da frase e armazena na matriz
+    while (frase[i] != '\0') {
+        if (frase[i] == ' ' || frase[i] == '\n' || frase[i] == '\r' || frase[i] == '\t') {
+            palavra[j] = '\0';
+            if (j > 0) {
+                strcpy(matriz_palavras[k], palavra);
+                k++;
+            }
+            j = 0;
+        } else {
+            palavra[j] = frase[i];
+            j++;
+        }
+        i++;
+    }
+    palavra[j] = '\0';
+    if (j > 0) {
+        strcpy(matriz_palavras[k], palavra);
+        k++;
+    }
+    
+    // imprime as palavras armazenadas na matriz
+    printf("Palavras digitadas separadamente:\n");
+    for (i = 0; i < k; i++) {
+        printf("%s\n", matriz_palavras[i]);
+    }
+    
+    return 0;
+}
