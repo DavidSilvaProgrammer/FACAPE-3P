@@ -1,1 +1,6 @@
 Primeiro tipo abstrato de dado modularizado.
+
+Experiência: Quando eu tentei salvar o arquivo antes de compilar, estava criando um arquivo na pasta geral do projeto com
+o nome de um dos arquivos da pasta, isso estava causando uma interferência na hora de compilar e executar. Resolvi isso
+não salvando mais o projeto antes de compilar. Simplesmente criei o projeto, criei os arquivos e depois cliquei em compilar e
+executar.
