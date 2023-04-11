@@ -40,6 +40,10 @@ int TPilha_Retira(TPilha *p){
     int aux;
     if(TPilha_Vazia(p)==1){
         printf("\nERRO: Pilha vazia");
+        //coloquei para retorna aux=0 na lista vazia
+        //para não ficar lixo de memória na variável aux
+        aux=0;
+        return aux;
     }else{
         aux=p->Item[p->Topo];
         p->Topo--;
