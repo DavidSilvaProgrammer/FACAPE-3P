@@ -1,0 +1,1 @@
+Primeiro tipo abstrato de dado modularizado.
