@@ -1,4 +1,4 @@
-quando você define a estrutura de uma função, você já especifica o seu tipo de retorno, nome e lista de parâmetros, 
+Quando você define a estrutura de uma função, você já especifica o seu tipo de retorno, nome e lista de parâmetros, 
 então em teoria não seria necessário declarar um protótipo separado.
 
 No entanto, se você estiver chamando uma função em um arquivo que está separado da sua definição (ou seja, 
