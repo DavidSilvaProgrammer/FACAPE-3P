@@ -1,0 +1,61 @@
+Claro, vou explicar passo a passo a movimentação dos caracteres da expressão "3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3" entre a pilha e a expressão convertida:
+
+    Inicialmente, a expressão convertida está vazia e a pilha está vazia.
+        exp: ""
+        pilha: []
+    O primeiro caractere da expressão é "3". Como é um dígito, ele é adicionado diretamente na expressão convertida.
+        exp: "3"
+        pilha: []
+    O próximo caractere é um espaço em branco, que é ignorado.
+        exp: "3"
+        pilha: []
+    O próximo caractere é um sinal de adição "+". Como a pilha está vazia, ele é empilhado.
+        exp: "3"
+        pilha: ["+"]
+    O próximo caractere é outro espaço em branco, que é ignorado.
+        exp: "3"
+        pilha: ["+"]
+    O próximo caractere é um dígito "4". Ele é adicionado diretamente na expressão convertida.
+        exp: "34"
+        pilha: ["+"]
+    O próximo caractere é um asterisco "*", que tem maior precedência do que o sinal de adição "+" na pilha. Então ele é empilhado.
+        exp: "34"
+        pilha: ["+", "*"]
+    O próximo caractere é outro espaço em branco, que é ignorado.
+        exp: "34"
+        pilha: ["+", "*"]
+    O próximo caractere é um dígito "2". Ele é adicionado diretamente na expressão convertida.
+        exp: "342"
+        pilha: ["+", "*"]
+    O próximo caractere é uma barra "/", que tem a mesma precedência do que o asterisco "" na pilha. Então o asterisco "" é desempilhado e adicionado na expressão convertida, e em seguida a barra "/" é empilhada.
+        exp: "342*"
+        pilha: ["+"]
+    O próximo caractere é um espaço em branco, que é ignorado.
+        exp: "342*"
+        pilha: ["+"]
+    O próximo caractere é um parêntese aberto "(". Ele é empilhado diretamente na pilha.
+        exp: "342*"
+        pilha: ["+", "("]
+    O próximo caractere é um dígito "1". Ele é adicionado diretamente na expressão convertida.
+        exp: "342*1"
+        pilha: ["+", "("]
+    O próximo caractere é um espaço em branco, que é ignorado.
+        exp: "342*1"
+        pilha: ["+", "("]
+    O próximo caractere é um sinal de subtração "-". Como tem menor precedência do que o parêntese aberto "(" na pilha, ele é empilhado diretamente na pilha.
+        exp: "342*1"
+        `pilha:
+        
+        
+  Explicação por que o programa não atrapalha 1 e 5 com 15:
+  
+  Na implementação apresentada, quando a função infixaParaPosfixa encontra um caractere que é um dígito (0-9), ela verifica 
+  se o próximo caractere também é um dígito. Se for, ela adiciona o primeiro dígito à expressão convertida (exp) e continua 
+  lendo os caracteres até que encontre um caractere que não seja um dígito.
+
+Por exemplo, suponha que a expressão seja "123+15". Quando a função lê o caractere '1', ela verifica que o próximo 
+caractere é um dígito ('2'), então ela adiciona '1' à expressão convertida e continua lendo até encontrar um caractere 
+que não seja um dígito. Em seguida, ela adiciona '23' à expressão convertida e continua lendo até encontrar o sinal de 
+adição ('+'). Em seguida, ela adiciona o sinal de adição à pilha e começa a processar os próximos caracteres. 
+Quando ela lê o número '15', ela não confunde com '1' e '5' 
+porque ela verifica se o próximo caractere é um dígito antes de adicionar o primeiro dígito à expressão convertida.
