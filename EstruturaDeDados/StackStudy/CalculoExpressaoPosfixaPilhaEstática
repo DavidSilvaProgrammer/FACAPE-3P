@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_SIZE 50
+
+/*      Aula 233
+
+        4) Notação pós-fixa (polonesa reversa) (calculadoras HP)
+        Infixa                      Pós-fixa
+        (51+13*12)                  51 13 12 * +                R = 207
+        (5*(3+2)/4-6)               5 3 2 + * 4 / 6 -           R = 0,25
+        (5+3+2*4-6*7*1)             5 3 + 2 4 * + 6 7 * 1 * -   R = -26
+        (5*(3+(2*(4+(6*(7+1))))))   5 3 2 4 6 7 1 + * + * + *   R = 535
+
+        Código escrito por Wagner Gaspar
+        Julho de 2021
+*/
+
+typedef struct pilha {
+    float dados[MAX_SIZE];
+    int topo;
+} Pilha;
+
+void inicializa_pilha(Pilha *p) {
+    p->topo = -1;
+}
+
+int pilha_vazia(Pilha *p) {
+    return (p->topo == -1);
+}
+
+int pilha_cheia(Pilha *p) {
+    return (p->topo == MAX_SIZE - 1);
+}
+
+void empilhar(Pilha *p, float num) {
+    if (pilha_cheia(p)) {
+        printf("\tErro: pilha cheia!\n");
+        return;
+    }
+    p->topo++;
+    p->dados[p->topo] = num;
+}
+
+float desempilhar(Pilha *p) {
+    if (pilha_vazia(p)) {
+        printf("\tErro: pilha vazia!\n");
+        return 0.0;
+    }
+    float valor = p->dados[p->topo];
+    p->topo--;
+    return valor;
+}
+
+float operacao(float a, float b, char x) {
+    switch(x){
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '/':
+            return a / b;
+        case '*':
+            return a * b;
+        default:
+            return 0.0;
+    }
+}
+
+float resolver_expressao(char x[]){
+    char *pt;
+    float num;
+    Pilha pilha;
+    inicializa_pilha(&pilha);
+
+    pt = strtok(x, " ");
+    while (pt) {
+        if (pt[0] == '+' || pt[0] == '-' || pt[0] == '/' || pt[0] == '*') {
+            float n1 = desempilhar(&pilha);
+            float n2 = desempilhar(&pilha);
+            num = operacao(n2, n1, pt[0]);
+            empilhar(&pilha, num);
+        }
+        else {
+            num = strtol(pt, NULL, 10);
+            empilhar(&pilha, num);
+        }
+        pt = strtok(NULL, " ");
+    }
+    return desempilhar(&pilha);
+}
+
+int main() {
+    char exp[50] = {"5 3 2 4 6 7 1 + * + * + *"};
+    printf("Resultado de %s:\t%f\n", exp, resolver_expressao(exp));
+}
+
+
+/*Explicação
+
+
+Basicamente, o programa utiliza a notação pós-fixa para avaliar expressões aritméticas, que consiste em 
+escrever os operadores após os operandos. Isso permite que a expressão seja avaliada sem a necessidade 
+de utilizar parênteses ou regras de precedência, tornando a avaliação mais simples.
+
+O programa utiliza uma pilha encadeada para empilhar e desempilhar os operandos da expressão e realizar 
+as operações aritméticas correspondentes. A função empilhar é responsável por criar um novo nó na pilha, 
+enquanto a função desempilhar remove o nó do topo da pilha e retorna seu valor.
+
+A função resolver_expressao é responsável por avaliar a expressão pós-fixa. Ela recebe a expressão como 
+uma string e utiliza a função strtok para separar os operandos e operadores em tokens individuais. 
+Se o token for um operando, ele é convertido em um número e empilhado na pilha. Se o token for um operador, 
+a função desempilhar é chamada duas vezes para remover os dois operandos do topo da pilha, e a operação 
+correspondente é realizada com a função operacao. O resultado é então empilhado de volta na pilha.
+
+Após avaliar todos os tokens da expressão, o último valor remanescente na pilha é retornado 
+como o resultado da expressão.
+
+
+*/
