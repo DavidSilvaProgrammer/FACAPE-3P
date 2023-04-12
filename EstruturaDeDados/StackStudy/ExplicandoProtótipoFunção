@@ -1,0 +1,10 @@
+quando você define a estrutura de uma função, você já especifica o seu tipo de retorno, nome e lista de parâmetros, 
+então em teoria não seria necessário declarar um protótipo separado.
+
+No entanto, se você estiver chamando uma função em um arquivo que está separado da sua definição (ou seja, 
+um arquivo de cabeçalho .h que contém apenas as declarações das funções), 
+o compilador precisará de um protótipo para saber como a função é definida e como usá-la corretamente.
+
+Em resumo, se você estiver trabalhando com um único arquivo fonte, pode ser possível evitar a declaração 
+de protótipos, mas é uma boa prática de programação fazer isso, pois ajuda a evitar possíveis problemas de 
+compilação e a tornar o código mais fácil de entender e manter.
