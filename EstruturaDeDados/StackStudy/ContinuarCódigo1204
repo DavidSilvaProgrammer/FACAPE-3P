@@ -1,0 +1,176 @@
+//Parte 1: inclusão de bibliotecas e definição de constantes
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_SIZE 50
+
+//Parte 2: definição da estrutura de pilha
+
+typedef struct pilha {
+    float dados[MAX_SIZE];
+    int topo;
+} Pilha;
+
+//Parte 3: inicialização da pilha
+
+void inicializa_pilha(Pilha *p) {
+    p->topo = -1;
+}
+
+//Parte 4: verificação se a pilha está vazia
+
+int pilha_vazia(Pilha *p) {
+    return (p->topo == -1);
+}
+
+//Parte 5: verificação se a pilha está cheia
+
+int pilha_cheia(Pilha *p) {
+    return (p->topo == MAX_SIZE - 1);
+}
+
+//Parte 6: função para empilhar um número na pilha
+
+void empilhar(Pilha *p, float num) {
+    if (pilha_cheia(p)) {
+        printf("\tErro: pilha cheia!\n");
+        return;
+    }
+    p->topo++;
+    p->dados[p->topo] = num;
+}
+
+//Parte 7: função para desempilhar um número da pilha
+
+float desempilhar(Pilha *p) {
+    if (pilha_vazia(p)) {
+        printf("\tErro: pilha vazia!\n");
+        return 0.0;
+    }
+    float valor = p->dados[p->topo];
+    p->topo--;
+    return valor;
+}
+
+//Parte 8: função para realizar a operação de acordo com o operador
+
+float operacao(float a, float b, char x) {
+    switch(x){
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '/':
+            return a / b;
+        case '*':
+            return a * b;
+        default:
+            return 0.0;
+    }
+}
+
+//Parte 9: função para resolver a expressão na notação posfixa
+
+float resolver_expressao(char x[]){
+    char *pt;
+    float num;
+    Pilha pilha;
+    inicializa_pilha(&pilha);
+
+    pt = strtok(x, " ");
+    while (pt) {
+        if (pt[0] == '+' || pt[0] == '-' || pt[0] == '/' || pt[0] == '*') {
+            float n1 = desempilhar(&pilha);
+            float n2 = desempilhar(&pilha);
+            num = operacao(n2, n1, pt[0]);
+            empilhar(&pilha, num);
+        }
+        else {
+            num = strtol(pt, NULL, 10);
+            empilhar(&pilha, num);
+        }
+        pt = strtok(NULL, " ");
+    }
+    return desempilhar(&pilha);
+}
+
+//Parte 10: função para converter a expressão infixa em posfixa
+
+char* infixa_para_posfixa(char *infixa) {
+    Pilha pilha;
+    inicializa_pilha(&pilha);
+    char *posfixa = malloc(sizeof(char) * MAX_SIZE);
+    int j = 0;
+
+    for (int i = 0; i < strlen(infixa); i++) {
+        if (isdigit(infixa[i])) {
+            // Se o caractere atual é um dígito, copie-o para a expressão posfixa
+            posfixa[j++] = infixa[i];
+            // Se o próximo caractere não é um dígito, adicione um espaço em branco para separar os números
+            if (!isdigit(infixa[i + 1]))
+                posfixa[j++] = ' ';
+        } else if (infixa[i] == '(') {
+            // Se o caractere atual é um parêntese aberto, empilhe-o na pilha
+            empilhar(&pilha, '(');
+        } else if (infixa[i] == ')') {
+            // Se o caractere atual é um parêntese fechado, desempilhe os operadores da pilha até encontrar o parêntese aberto correspondente
+            while (!pilha_vazia(&pilha) && pilha.dados[pilha.topo] != '(') {
+                posfixa[j++] = pilha.dados[pilha.topo];
+                posfixa[j++] = ' ';
+                desempilhar(&pilha);
+            }
+            if (!pilha_vazia(&pilha) && pilha.dados[pilha.topo] == '(')
+                desempilhar(&pilha);
+        } else if (is_operator(infixa[i])) {
+            // Se o caractere atual é um operador, desempilhe os operadores da pilha até encontrar um operador de menor precedência
+            while (!pilha_vazia(&pilha) && pilha.dados[pilha.topo] != '(' && precedence(pilha.dados[pilha.topo]) >= precedence(infixa[i])) {
+                posfixa[j++] = pilha.dados[pilha.topo];
+                posfixa[j++] = ' ';
+                desempilhar(&pilha);
+            }
+            empilhar(&pilha, infixa[i]);
+        }
+    }
+
+    // Desempilhe todos os operadores da pilha e adicione à expressão posfixa
+    while (!pilha_vazia(&pilha)) {
+        posfixa[j++] = pilha.dados[pilha.topo];
+        posfixa[j++] = ' ';
+        desempilhar(&pilha);
+    }
+    // Adicione o caractere nulo no final da expressão posfixa
+    posfixa[j] = '\0';
+
+    return posfixa;
+}
+
+
+/*
+Agora que temos a função para converter a expressão 
+infixa em posfixa, vamos atualizar o main para pedir 
+ao usuário a entrada da expressão infixa, convertê-la 
+em posfixa e calcular o resultado.
+*/
+
+int main() {
+    char infixa[MAX_SIZE], posfixa[MAX_SIZE];
+    float resultado;
+    
+    printf("Digite a expressao infixa: ");
+    fgets(infixa, MAX_SIZE, stdin);
+    infixa[strlen(infixa)-1] = '\0'; // Remover o \n lido pelo fgets
+    
+    converte_infixa_posfixa(infixa, posfixa);
+    printf("Expressao posfixa: %s\n", posfixa);
+    
+    resultado = resolver_expressao(posfixa);
+    printf("Resultado da expressao: %f\n", resultado);
+    
+    return 0;
+}
+
+
+
+
