@@ -1,0 +1,143 @@
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_SIZE 50
+
+typedef struct pilha {
+    double dados[MAX_SIZE];
+    int topo;
+} Pilha;
+
+void inicializa_pilha(Pilha *p) {
+    p->topo = -1;
+}
+
+int pilha_vazia(Pilha *p) {
+    return (p->topo == -1);
+}
+
+int pilha_cheia(Pilha *p) {
+    return (p->topo == MAX_SIZE - 1);
+}
+
+void empilhar(Pilha *p, double valor) {
+    if (pilha_cheia(p)) {
+        printf("\tErro: pilha cheia!\n");
+        exit(1);
+    }
+    p->topo++;
+    p->dados[p->topo] = valor;
+}
+
+double desempilhar(Pilha *p) {
+    if (pilha_vazia(p)) {
+        printf("\tErro: pilha vazia!\n");
+        exit(1);
+    }
+    double valor = p->dados[p->topo];
+    p->topo--;
+    return valor;
+}
+
+int prioridade(char operador) {
+    switch (operador) {
+        case '+':
+        case '-':
+            return 1;
+        case '*':
+        case '/':
+            return 2;
+        default:
+            return 0;
+    }
+}
+
+char *infixa_para_posfixa(char *infixa) {
+    Pilha pilha;
+    inicializa_pilha(&pilha);
+
+    char *posfixa = (char *)malloc(strlen(infixa) + 1);
+    int i, j;
+    for (i = 0, j = 0; infixa[i] != '\0'; i++) {
+        char c = infixa[i];
+        if (isdigit(c) || isalpha(c)) {
+            posfixa[j] = c;
+            j++;
+        } else if (c == '(') {
+            empilhar(&pilha, c);
+        } else if (c == ')') {
+            char operador;
+            while ((operador = desempilhar(&pilha)) != '(') {
+                posfixa[j] = operador;
+                j++;
+            }
+        } else {
+            while (!pilha_vazia(&pilha) && prioridade(pilha.dados[pilha.topo]) >= prioridade(c)) {
+                posfixa[j] = desempilhar(&pilha);
+                j++;
+            }
+            empilhar(&pilha, c);
+        }
+    }
+    while (!pilha_vazia(&pilha)) {
+        posfixa[j] = desempilhar(&pilha);
+        j++;
+    }
+    posfixa[j] = '\0';
+
+    return posfixa;
+}
+
+
+double avaliar_posfixa(char *posfixa) {
+    Pilha pilha;
+    inicializa_pilha(&pilha);
+
+    int i;
+    for (i = 0; posfixa[i] != '\0'; i++) {
+        char c = posfixa[i];
+        if (isdigit(c)) {
+            empilhar(&pilha, c - '0');
+        } else if (c == ' ') {
+            // ignorar espaços
+        } else {
+            double operando2 = desempilhar(&pilha);
+            double operando1 = desempilhar(&pilha);
+            switch (c) {
+                case '+':
+                    empilhar(&pilha, operando1 + operando2);
+                    break;
+                case '-':
+                    empilhar(&pilha, operando1 - operando2);
+                    break;
+                case '*':
+                    empilhar(&pilha, operando1 * operando2);
+                    break;
+                case '/':
+                    empilhar(&pilha, operando1 / operando2);
+                    break;
+            }
+        }
+    }
+
+    return desempilhar(&pilha);
+}
+
+
+int main() {
+char infixa[MAX_SIZE];
+printf("Digite a expressao infixa: ");
+fgets(infixa, MAX_SIZE, stdin);
+
+char *posfixa = infixa_para_posfixa(infixa);
+printf("Expressao posfixa: %s\n", posfixa);
+
+int resultado = avaliar_posfixa(posfixa);
+printf("Resultado: %d\n", resultado);
+
+free(posfixa);
+
+return 0;
+}
