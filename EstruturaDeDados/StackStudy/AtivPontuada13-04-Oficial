@@ -51,7 +51,7 @@ char* infix_para_posfixa(char* expressao) {
             while (isdigit(expressao[++i])) {
                 posfixa[j++] = expressao[i];
             }
-            posfixa[j++] = ' ';
+            posfixa[j++] = ' '; // Adiciona espaço após o operando
             i--;
         }
         else if (ch == '(') {
@@ -71,7 +71,7 @@ char* infix_para_posfixa(char* expressao) {
         else {
             while (topo != -1 && precedencia(ch) <= precedencia(pilha[topo])) {
                 posfixa[j++] = pilha[topo--];
-                posfixa[j++] = ' '; 
+                posfixa[j++] = ' '; // Adiciona espaço após o operador
             }
             push(ch);
         }
@@ -82,9 +82,9 @@ char* infix_para_posfixa(char* expressao) {
             exit(EXIT_FAILURE);
         }
         posfixa[j++] = pilha[topo--];
-        posfixa[j++] = ' '; 
+        posfixa[j++] = ' '; // Adiciona espaço após o operador
     }
-    posfixa[j - 1] = '\0'; 
+    posfixa[j - 1] = '\0'; // Remove espaço em branco no final da string
     return posfixa;
 }
 
@@ -131,7 +131,7 @@ int main() {
 char expressao[MAX_SIZE];
 printf("Digite a expressão: ");
 fgets(expressao, MAX_SIZE, stdin);
-expressao[strcspn(expressao, "\n")] = '\0'; 
+expressao[strcspn(expressao, "\n")] = '\0'; // Remove o caractere '\n' do final da string
 char* posfixa = infix_para_posfixa(expressao);
 printf("Expressão em NPR: %s\n", posfixa);
 double resultado = avaliar_posfixa(posfixa);
