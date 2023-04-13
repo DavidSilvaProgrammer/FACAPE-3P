@@ -152,3 +152,16 @@ int main() {
 
     return 0;
 }
+
+
+/*
+O erro "pilha vazia" ocorre na função calcular_posfixa, que tenta desempilhar um elemento da pilha, mas a pilha está vazia. 
+Isso acontece porque a expressão posfixa resultante pode estar incorreta e levar a uma tentativa de cálculo inválido.
+
+Uma possível causa para isso é que a função infixa_para_posfixa não está tratando adequadamente casos em que há espaços 
+em branco na expressão infixa, o que pode gerar caracteres inválidos na expressão posfixa e, por consequência, 
+levar a erros na avaliação.
+
+Também é importante verificar se a pilha está sendo inicializada corretamente antes do cálculo da expressão 
+posfixa e se o tamanho da pilha é suficiente para a expressão a ser avaliada.
+*/
