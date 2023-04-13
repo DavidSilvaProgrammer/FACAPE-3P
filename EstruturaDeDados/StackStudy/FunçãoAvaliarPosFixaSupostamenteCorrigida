@@ -1,0 +1,37 @@
+double avaliar_posfixa(char* expressao) {
+    int i;
+    char ch;
+    double val1, val2;
+    for (i = 0; expressao[i]; i++) {
+        ch = expressao[i];
+        if (isdigit(ch))
+            push(ch - '0');
+        else if (eh_operador(ch)) {
+            if (topo < 1) {
+                printf("Erro: Pilha vazia ao avaliar a expressão\n");
+                exit(EXIT_FAILURE);
+            }
+            val2 = pop();
+            val1 = pop();
+           
+            if (ch == '+') {
+                push(val1 + val2);
+            } else if (ch == '-') {
+                push(val1 - val2);
+            } else if (ch == '*') {
+                push(val1 * val2);
+            } else if (ch == '/') {
+                if (val2 == 0) {
+                    printf("Erro: Divisão por zero\n");
+                    exit(EXIT_FAILURE);
+                }
+                push(val1 / val2);
+            }
+        }
+    }
+    if (topo != 0) {
+        printf("Erro: Expressão inválida\n");
+        exit(EXIT_FAILURE);
+    }
+    return pilha[topo];
+}
