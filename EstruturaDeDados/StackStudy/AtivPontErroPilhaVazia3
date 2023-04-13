@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
+#define MAX_SIZE 100
+
+int top = -1;
+int stack[MAX_SIZE];
+
+
+void push(int value) {
+    if (top == MAX_SIZE - 1) {
+        printf("Erro: Pilha cheia\n");
+        exit(EXIT_FAILURE);
+    }
+    stack[++top] = value;
+}
+
+int pop() {
+    if (top == -1) {
+        printf("Erro: Pilha vazia\n");
+        exit(EXIT_FAILURE);
+    }
+    return stack[top--];
+}
+
+int is_operator(char ch) {
+    if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
+        return 1;
+    return 0;
+}
+
+int precedence(char ch) {
+    if (ch == '*' || ch == '/')
+        return 2;
+    if (ch == '+' || ch == '-')
+        return 1;
+    return 0;
+}
+
+char* infix_to_postfix(char* infix_expression) {
+    int i, j;
+    char ch;
+    char* postfix_expression = (char*) malloc(strlen(infix_expression) * sizeof(char));
+    for (i = 0, j = -1; infix_expression[i]; i++) {
+        ch = infix_expression[i];
+        if (isalnum(ch))
+            postfix_expression[++j] = ch;
+        else if (ch == '(')
+            push(ch);
+        else if (ch == ')') {
+            while (stack[top] != '(')
+                postfix_expression[++j] = pop();
+            pop();
+        }
+        else {
+            while (top != -1 && precedence(stack[top]) >= precedence(ch))
+                postfix_expression[++j] = pop();
+            push(ch);
+        }
+    }
+    while (top != -1)
+        postfix_expression[++j] = pop();
+    postfix_expression[++j] = '\0';
+    return postfix_expression;
+}
+
+double evaluate_postfix_expression(char* expression) {
+    int i;
+    char ch;
+    double val1, val2;
+    for (i = 0; expression[i]; i++) {
+        ch = expression[i];
+        if (isalnum(ch))
+            push(ch - '0');
+        else {
+            val2 = pop();
+            val1 = pop();
+            switch(ch) {
+                case '+':
+                    push(val1 + val2);
+                    break;
+                case '-':
+                    push(val1 - val2);
+                    break;
+                case '*':
+                    push(val1 * val2);
+                    break;
+                case '/':
+                    push(val1 / val2);
+                    break;
+            }
+        }
+    }
+    return stack[top];
+}
+
+int main() {
+    char infix_expression[MAX_SIZE];
+    printf("Digite a expressão: ");
+    fgets(infix_expression, MAX_SIZE, stdin);
+    char* postfix_expression = infix_to_postfix(infix_expression);
+    printf("Expressão em NPR: %s\n", postfix_expression);
+    double result = evaluate_postfix_expression(postfix_expression);
+    printf("Resultado = %.2f\n", result);
+    return 0;
+}
+
+
+
+
+
+
+
