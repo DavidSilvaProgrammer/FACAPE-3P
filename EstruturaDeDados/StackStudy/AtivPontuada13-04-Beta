@@ -1,3 +1,5 @@
+/*Contém alguns erros em algumas funções (comandos que não são utilizados), mas não influenciam no resultado do programa*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
