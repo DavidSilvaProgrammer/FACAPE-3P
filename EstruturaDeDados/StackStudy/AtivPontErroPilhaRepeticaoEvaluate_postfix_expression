@@ -1,0 +1,188 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
+
+#define MAX_SIZE 500
+
+int top = -1;
+int stack[MAX_SIZE];
+
+void push(double value) {
+    if (top == MAX_SIZE - 1) {
+        printf("Erro: Pilha cheia\n");
+        exit(EXIT_FAILURE);
+    }
+    stack[++top] = value;
+}
+
+double pop() {
+    if (top == -1) {
+        printf("Erro: Pilha vazia\n");
+        exit(EXIT_FAILURE);
+    }
+    return stack[top--];
+}
+
+int is_operator(char ch) {
+    if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
+        return 1;
+    return 0;
+}
+
+int precedence(char ch) {
+    if (ch == '*' || ch == '/')
+        return 2;
+    if (ch == '+' || ch == '-')
+        return 1;
+    return 0;
+}
+
+
+char* infix_to_postfix(char* expression) {
+    int i, j;
+    char* postfix = (char*)malloc(sizeof(char) * (strlen(expression) + 1));
+    char ch;
+    for (i = 0, j = 0; expression[i] != '\0'; i++) {
+        ch = expression[i];
+        if (isdigit(ch)) {
+            postfix[j++] = ch;
+            while (isdigit(expression[++i])) {
+                postfix[j++] = expression[i];
+            }
+            postfix[j++] = ' '; // Adiciona espaço após o operando
+            i--;
+        }
+        else if (ch == '(') {
+            push(ch);
+        }
+        else if (ch == ')') {
+            while (top != -1 && stack[top] != '(') {
+                postfix[j++] = stack[top--];
+                postfix[j++] = ' '; // Adiciona espaço após o operador
+            }
+            if (top == -1) {
+                printf("Expressão inválida!\n");
+                exit(1);
+            }
+            top--;
+        }
+        else {
+            while (top != -1 && precedence(ch) <= precedence(stack[top])) {
+                postfix[j++] = stack[top--];
+                postfix[j++] = ' '; // Adiciona espaço após o operador
+            }
+            push(ch);
+        }
+    }
+    while (top != -1) {
+        if (stack[top] == '(') {
+            printf("Expressão inválida!\n");
+            exit(1);
+        }
+        postfix[j++] = stack[top--];
+        postfix[j++] = ' '; // Adiciona espaço após o operador
+    }
+    postfix[j - 1] = '\0'; // Remove espaço em branco no final da string
+    return postfix;
+}
+
+double evaluate_postfix_expression(char* expression) {
+    int i;
+    char ch;
+    double val1, val2;
+    for (i = 0; expression[i]; i++) {
+        ch = expression[i];
+        if (isdigit(ch))
+            push(ch - '0');
+        else if (is_operator(ch)) {
+            if (top < 1) {
+                printf("Erro: Pilha vazia ao avaliar a expressão\n");
+                exit(EXIT_FAILURE);
+            }
+            val2 = pop();
+            val1 = pop();
+            switch(ch) {
+                case '+':
+                    push(val1 + val2);
+                    break;
+                case '-':
+                    push(val1 - val2);
+                    break;
+                case '*':
+                    push(val1 * val2);
+                    break;
+                case '/':
+                    if (val2 == 0) {
+                        printf("Erro: Divisão por zero\n");
+                        exit(EXIT_FAILURE);
+                    }
+                    push(val1 / val2);
+                    break;
+            }
+        }
+    }
+    return pop();
+}
+double evaluate_postfix_expression(char* expression) {
+    int i;
+    char ch;
+    double val1, val2;
+    for (i = 0; expression[i]; i++) {
+        ch = expression[i];
+        if (isdigit(ch))
+            push(ch - '0');
+        else if (is_operator(ch)) {
+            if (top < 1) {
+                printf("Erro: Pilha vazia ao avaliar a expressão\n");
+                exit(EXIT_FAILURE);
+            }
+            val2 = pop();
+            val1 = pop();
+            switch(ch) {
+                case '+':
+                    push(val1 + val2);
+                    break;
+                case '-':
+                    push(val1 - val2);
+                    break;
+                case '*':
+                    push(val1 * val2);
+                    break;
+                case '/':
+                    if (val2 == 0) {
+                        printf("Erro: divisão por zero\n");
+                        exit(EXIT_FAILURE);
+                    }
+                    push(val1 / val2);
+                    break;
+            }
+        }
+    }
+    if (top != 0) {
+        printf("Erro: Expressão inválida!\n");
+        exit(EXIT_FAILURE);
+    }
+    return pop();
+}
+
+int main() {
+    char expression[MAX_SIZE];
+    char* postfix;
+    double result;
+
+    printf("Digite uma expressão aritmética:\n");
+    fgets(expression, MAX_SIZE, stdin);
+
+    postfix = infix_to_postfix(expression);
+    printf("Notação polonesa reversa: %s\n", postfix);
+
+    result = evaluate_postfix_expression(postfix);
+    printf("Resultado: %g\n", result);
+
+    free(postfix);
+
+    return 0;
+}
+
