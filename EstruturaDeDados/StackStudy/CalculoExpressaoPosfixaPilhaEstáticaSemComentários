@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_SIZE 50
+
+*/
+
+typedef struct pilha {
+    float dados[MAX_SIZE];
+    int topo;
+} Pilha;
+
+void inicializa_pilha(Pilha *p) {
+    p->topo = -1;
+}
+
+int pilha_vazia(Pilha *p) {
+    return (p->topo == -1);
+}
+
+int pilha_cheia(Pilha *p) {
+    return (p->topo == MAX_SIZE - 1);
+}
+
+void empilhar(Pilha *p, float num) {
+    if (pilha_cheia(p)) {
+        printf("\tErro: pilha cheia!\n");
+        return;
+    }
+    p->topo++;
+    p->dados[p->topo] = num;
+}
+
+float desempilhar(Pilha *p) {
+    if (pilha_vazia(p)) {
+        printf("\tErro: pilha vazia!\n");
+        return 0.0;
+    }
+    float valor = p->dados[p->topo];
+    p->topo--;
+    return valor;
+}
+
+float operacao(float a, float b, char x) {
+    switch(x){
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '/':
+            return a / b;
+        case '*':
+            return a * b;
+        default:
+            return 0.0;
+    }
+}
+
+float resolver_expressao(char x[]){
+    char *pt;
+    float num;
+    Pilha pilha;
+    inicializa_pilha(&pilha);
+
+    pt = strtok(x, " ");
+    while (pt) {
+        if (pt[0] == '+' || pt[0] == '-' || pt[0] == '/' || pt[0] == '*') {
+            float n1 = desempilhar(&pilha);
+            float n2 = desempilhar(&pilha);
+            num = operacao(n2, n1, pt[0]);
+            empilhar(&pilha, num);
+        }
+        else {
+            num = strtol(pt, NULL, 10);
+            empilhar(&pilha, num);
+        }
+        pt = strtok(NULL, " ");
+    }
+    return desempilhar(&pilha);
+}
+
+int main() {
+    char exp[50] = {"5 3 2 4 6 7 1 + * + * + *"};
+    printf("Resultado de %s:\t%f\n", exp, resolver_expressao(exp));
+}
