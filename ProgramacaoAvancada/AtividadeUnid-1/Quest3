@@ -26,3 +26,60 @@ fimalgoritmo
 Após a execução, o algoritmo, os valores de W e N serão,
 respectivamente:
 
+Resolução:
+
+x=5,n=0,w=ff(x),w=w-50;
+
+
+ff(y:5)
+n:1=n:0+1
+
+else:
+retorna 5*ff(4)
+
+
+ff(y:4)
+n:2=n:1+1
+
+else:
+retorna 4*ff(3)
+
+
+ff(y:3)
+n:3=n:2+1
+
+else:
+retorna 3*ff(2)
+
+
+ff(y:2)
+n:4=n:3+1
+
+else:
+retorna 2*ff(1)
+
+
+ff(y:1)
+n:5=n:4+1
+
+if:
+retorna 1.
+
+Desempilhar:
+
+ff(2)=2*1=2
+ff(3)=3*2=6
+ff(4)=4*6=24
+ff(5)=5*24=120
+
+Main:
+
+w=120
+w=120-50=70
+
+escreva(w:70,n:5)
+
+
+Resposta
+
+D) 70 e 5.
