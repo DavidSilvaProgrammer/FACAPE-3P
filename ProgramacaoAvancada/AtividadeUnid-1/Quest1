@@ -1,0 +1,18 @@
+/* 1) Assinale a alternativa com a saída da função printf do código
+abaixo: */
+
+#include <stdio.h>
+int main(){
+    int i, aux, x;
+    int V[]={3,7,5,2,8,6,1,4};
+    for(i=7;i>=4; i--){
+        aux=V[i];
+        V[i]=V[7-i];
+        V[7-i]=aux;
+// printf("%d", aux);
+}
+    for(x=0; x<=7; x++){
+    printf("%d", V[x]);
+}
+return 0;
+}
