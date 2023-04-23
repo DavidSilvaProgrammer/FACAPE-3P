@@ -1,0 +1,28 @@
+3) Observe o algoritmo a seguir, que utiliza o conceito de
+função recursiva.
+
+algoritmo "MDA"
+
+var
+    X, W, N : inteiro
+funcao FF(Y:inteiro):inteiro
+inicio
+N <- N + 1
+se Y < 2 entao
+    retorne 1
+senao
+    retorne Y * FF(Y-1)
+fimse
+fimfuncao
+
+inicio
+    X = 5
+    N = 0
+    W = FF(X)
+    W = W-50
+    escreval(W,N)
+fimalgoritmo
+
+Após a execução, o algoritmo, os valores de W e N serão,
+respectivamente:
+
