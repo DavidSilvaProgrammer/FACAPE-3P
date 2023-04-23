@@ -1,0 +1,12 @@
+2) Considere a afirmação abaixo. Trata-se de uma estrutura de dados em que os
+elementos são inseridos por uma extremidade e removidos por outra. Sua remoção é sempre do
+elemento mais antigo (first in, first out).
+
+Assinale a alternativa que se relaciona à afirmação
+acima.
+
+  a) Árvore binária.
+  b) Pilha.
+x c) Fila.
+  d) Árvore.
+  e) Lista encadeada.
