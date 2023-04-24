@@ -17,11 +17,9 @@ Regras específicas:
 operandos empilhados, efetue a operação e empilhe o resultado.
 
 
-
-
 ************************************
 
-OBS: Em subtração e divisão prestar atenção:
+OBS: Em subtração e divisão, prestar atenção:
 
 Na hora de desempilhar dois elmentos, o do topo é o
 V2 e o penultimo é o V1, ou seja, V1-V2.
