@@ -1,0 +1,30 @@
+3-Faça um procedimento que informe quantas vezes um dado elemento se
+encontra em uma pilha.
+
+int estaNaPilha(Pilha *p, int elemento) {
+    Pilha *aux = CriarPilha(); // pilha auxiliar para percorrer a pilha original
+    int encontrado = 0; // flag que indica se o elemento foi encontrado
+    int ocorrencias = 0; // contador de ocorrencias do elemento
+    while (!vaziaPilha(p)) {
+        int item = pop(p); // desempilha o topo da pilha original
+        push(aux, item); // empilha o item na pilha auxiliar
+        if (item == elemento) {
+            encontrado = 1; // marca o elemento como encontrado
+            ocorrencias++; // incrementa o contador de ocorrencias
+        }
+    }
+    // restaura a pilha original empilhando todos os elementos de volta
+    while (!vaziaPilha(aux)) {
+        int item = pop(aux);
+        push(p, item);
+    }
+    liberaPilha(aux); // libera a pilha auxiliar
+    if (encontrado) {
+        return ocorrencias;
+    } else {
+        return 0;
+    }
+}
+
+
+
