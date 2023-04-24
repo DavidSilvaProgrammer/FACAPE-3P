@@ -13,7 +13,7 @@ Regras específicas:
 
 1- Se for operando, empilhe-o.
 
-2- Se for operador, desempilher os dois últimos 
+2- Se for operador, desempilhe os dois últimos 
 operandos empilhados, efetue a operação e empilhe o resultado.
 
 
