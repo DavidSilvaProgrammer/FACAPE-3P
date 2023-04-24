@@ -18,3 +18,17 @@ expressão posfixa, ao final, empilhe o lexeoma encontrado.
 4-Se for parêntese de fechamento,desempilhe um operador e anexe-o
 à expressão posfixa, até que o parêntese de abertura correspondente
 apareça no topo da pilha. Então, desempilhe esse parêntese e descarte-o.
+
+
+***********************************************
+
+1-Empilhe paretense de abertura
+
+2-Operando vai para expressão.
+
+3-Operador vai para pilha somente após retirar de lá
+outro com mesma prioridade ou maior.
+
+4- Se encontrar parêntese de fechamento, desempilhe todos
+os operadores da pilha até o parenteses de abertura, sendo
+este descartado após isso.
