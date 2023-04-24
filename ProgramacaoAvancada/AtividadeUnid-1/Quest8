@@ -1,0 +1,8 @@
+def func(arg):
+  if arg == 0:
+      return 0
+   else:
+      return (arg % 2) + 10 * func(arg // 2)
+      
+Qual o valor retornado pela função acima, quando recebe 
+como parâmetro o número 5?
