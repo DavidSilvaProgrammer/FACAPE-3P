@@ -1,0 +1,52 @@
+/*A implementação é representada pelo arquivo "pilha.h"
+
+/*A implementação é representada pelo arquivo "pilha.c" */
+
+
+struct pilha{
+    int dados[MAX];
+    int topo;
+};
+
+
+Pilha *CriarPilha(){
+    Pilha *p= (Pilha*)malloc(sizeof(Pilha));
+    p->topo=0;
+    return p;
+}
+
+int vaziaPilha(Pilha *p){
+    return(p->topo == 0);
+}
+
+int cheiaPilha(Pilha *p){
+    return (p->topo == MAX);
+}
+
+void push(Pilha *p, int item){
+    if(cheiaPilha(p)){
+        printf("ERRO: OVERFLOW!!! ");
+        printf("Nao foi possivel empilhar %d\n",item);
+    }else{
+        p->dados[p->topo]=item;
+        p->topo++;
+        printf("%d foi empilhado!\n",item);
+    }
+}
+
+int pop(Pilha *p){
+    int ret;
+    if(vaziaPilha(p)){
+        printf("ERRO: UNDERFLOW\n");
+        printf("Nao foi possivel desempilhar\n");
+        ret=-1;
+    }else{
+        ret=p->dados[p->topo-1];
+        p->topo--;
+    }
+    return ret;
+}
+
+void liberaPilha(Pilha *p){
+    free(p);
+}
