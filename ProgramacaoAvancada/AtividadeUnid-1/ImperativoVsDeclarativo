@@ -1,0 +1,34 @@
+Paradigma Imperativo
+
+No paradigma imperativo, resolveríamos esse problema com uma abordagem baseada em instruções sequenciais 
+que descrevem como a tarefa deve ser realizada.
+
+# Programa para calcular a soma dos números de 1 a 10 usando o paradigma imperativo
+
+soma = 0
+for i in range(1, 11):
+    soma += i
+
+print("A soma é:", soma)
+
+Neste programa, primeiro criamos uma variável soma e atribuímos o valor zero a ela. Em seguida, usamos 
+um loop for para iterar de 1 a 10 e, em cada iteração, adicionamos o valor do contador i à variável soma. 
+Por fim, imprimimos a soma resultante na tela.
+Paradigma Declarativo
+
+No paradigma declarativo, resolveríamos esse problema com uma abordagem baseada em uma descrição do que deve ser 
+alcançado, em vez de uma descrição de como alcançá-lo.
+
+# Programa para calcular a soma dos números de 1 a 10 usando o paradigma declarativo
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+soma = sum(numeros)
+
+print("A soma é:", soma)
+
+Neste programa, definimos uma lista de números de 1 a 10 e, em seguida, usamos a função sum para calcular a soma 
+desses números. Essa abordagem se concentra na declaração do que deve ser feito (calcular a soma dos números de 1 a 10) 
+e permite que a linguagem e o ambiente façam o trabalho pesado de calcular a soma.
+
+Observe que o paradigma declarativo nem sempre é mais simples ou mais fácil de entender do que o paradigma imperativo. 
+Depende do problema em questão e da melhor maneira de abordá-lo.
