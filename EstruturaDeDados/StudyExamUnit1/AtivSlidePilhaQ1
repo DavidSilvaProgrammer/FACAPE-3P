@@ -1,0 +1,13 @@
+/*Operação topo retorna uma cópia do elemento que está no topo da pilha,
+sem removê-lo. Acrescente esta operação no tipo pilha.*/
+
+int top(Pilha p){
+    int ret;
+    if(vaziaPilha(p)){
+        printf("ERRO: \n");
+        printf("A pilha nao possui elementos);
+        ret=-1;
+    }else{
+        ret=p->dados[p->topo-1];
+    }
+    return ret;
