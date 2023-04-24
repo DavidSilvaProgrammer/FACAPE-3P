@@ -1,0 +1,14 @@
+Exercícios:
+
+1-A operação top retorna uma cópai do elmento que está no topo da pilha,
+sem removê-lo. Acrescente esta operação no tipo pilha.
+
+2-Faça um procedimento para verificar se um dado elemento se encontra em
+uma pilha.
+
+3-Faça um procedimento que informe quantas vezes um dado elemento se
+encontra em uma pilha.
+
+4-Faça uma função que retorne quantos elementos possui uma pilha.
+
+5-Faça um procedimento para imprimir todos os elementos de uma pilha. 
