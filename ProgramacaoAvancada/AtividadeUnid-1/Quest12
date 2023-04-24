@@ -9,3 +9,15 @@ retorna f(b, a MOD b)
 Onde x MOD y é o resto da divisão de x por y. O valor de f (30, 21) é:
 
 
+Resolução:
+
+f(30,21)->f(21,9)->3
+f(21,9)->f(9,3)->3
+f(9,3)->f(3,0)->3
+f(3,0)->retorna 3
+
+Alternativa:
+
+C) 3
+
+
