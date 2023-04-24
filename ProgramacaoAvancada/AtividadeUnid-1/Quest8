@@ -6,3 +6,13 @@ def func(arg):
       
 Qual o valor retornado pela função acima, quando recebe 
 como parâmetro o número 5?
+
+
+func(5)-> 1+10*func(2)->1+10*10=101
+func(2)-> 0+10*func(1)->0+10*1=10
+func(1)-> 1+11*func(0)->1+11*0=1
+func(0)-> retorne 0
+
+Alternativa:
+
+A) 101
