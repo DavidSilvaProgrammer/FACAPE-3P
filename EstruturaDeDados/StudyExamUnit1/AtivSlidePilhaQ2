@@ -1,0 +1,21 @@
+2-Faça um procedimento para verificar se um dado elemento se encontra em
+uma pilha.
+
+int estaNaPilha(Pilha *p, int elemento) {
+    Pilha *aux = CriarPilha(); // pilha auxiliar para percorrer a pilha original
+    int encontrado = 0; // flag que indica se o elemento foi encontrado
+    while (!vaziaPilha(p)) {
+        int item = pop(p); // desempilha o topo da pilha original
+        push(aux, item); // empilha o item na pilha auxiliar
+        if (item == elemento) {
+            encontrado = 1; // marca o elemento como encontrado
+        }
+    }
+    // restaura a pilha original empilhando todos os elementos de volta
+    while (!vaziaPilha(aux)) {
+        int item = pop(aux);
+        push(p, item);
+    }
+    liberaPilha(aux); // libera a pilha auxiliar
+    return encontrado;
+}
