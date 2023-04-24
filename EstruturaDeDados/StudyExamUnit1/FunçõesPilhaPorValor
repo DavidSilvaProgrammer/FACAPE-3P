@@ -1,0 +1,14 @@
+Não há necessidade de passar a pilha por referência nas funções vaziaPilha e cheiaPilha, 
+já que elas não modificam a pilha. Seria mais apropriado passar a pilha por valor, assim como é feito 
+nas funções push, pop e liberaPilha, que efetivamente modificam a pilha. Dessa forma, a assinatura das 
+funções vaziaPilha e cheiaPilha ficaria assim:
+
+c
+
+int vaziaPilha(Pilha p){
+    return (p.topo == 0);
+}
+
+int cheiaPilha(Pilha p){
+    return (p.topo == MAX);
+}
