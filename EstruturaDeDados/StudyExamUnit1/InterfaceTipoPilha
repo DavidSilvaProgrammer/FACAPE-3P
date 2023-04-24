@@ -1,0 +1,20 @@
+/*Interface do tipo pilha
+A interface é representada pelo arquivo "pilha.h"
+
+
+
+*Criar uma pilha vazia
+*Inserir um elemento no topo(push)
+*Remover o elemento do topo(pop)
+*Verificar se a pilha está vazia;
+*Liberar a estrutura de pilha
+*/
+
+typedef struct pilha Pilha;
+
+Pilha* criarPilha();
+int vaziaPilha(Pilha *p);
+int cheiaPilha(Pilha *p);
+void push(Pilha *p,int item);
+int pop(Pilha *p);
+void liberaPilha(Pilha *p);
