@@ -1,0 +1,20 @@
+//INTERFACE
+
+#define MAX 6
+
+struct fila{
+    int dados[MAX];
+    int inicio;
+    int fim;
+    int qtd;
+};
+
+typedef struct fila Fila;
+
+void iniciar(Fila *f);
+int vazia(Fila f);
+int cheia(Fila f);
+
+void enqueue(Fila *f, int item);
+int dequeue(Fila *f);
+void mostrarFila(Fila f);
