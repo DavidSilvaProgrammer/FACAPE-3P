@@ -1,0 +1,20 @@
+/*Implementação da pilha com vetor
+
+Exemplo de utilização do tipo pilha: main.c":*/
+
+int main(int argc, char *argv[]){
+    Pilha *p1;
+    p1= criarPilha();
+    printf("Pilha vazia?: %d\n",vaziaPilha(p1));
+    push(p1,10);
+    push(p1,20);
+    push(p1,30);
+    push(p1,40);
+    push(p1,50);
+    printf("Pilha cheia?: %d\n", cheiaPilha(p1));
+    printf("Elemento desempilhado: %d\n",pop(p1));
+    push(p1,60);
+    liberaPilha(p1);
+    
+    return 0;
+}
