@@ -1,0 +1,18 @@
+4) Considere o código escrito na Linguagem C, abaixo, para o
+cálculo de fatorial:
+
+#include <stdio.h>
+int fat(int n) {
+    if (n)
+        return n*fat(n-1)
+    else
+        return 1;
+}
+
+Qual é a técnica utilizada?
+Alternativas
+  a) Autochamamento.
+  b) Arranjo autossequencial.
+  c) Linearidade.
+  d) Sequenciamento de memória.
+x e) Recursividade.
