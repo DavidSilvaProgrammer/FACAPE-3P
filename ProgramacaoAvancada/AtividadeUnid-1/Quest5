@@ -1,0 +1,24 @@
+// algoritmo "IFCE"
+
+var nr, xy,m,n: inteiro
+
+funcao fortaleza(sobral:inteiro):inteiro
+
+inicio
+se sobral <2 então
+  retorn 1
+senao
+  retorne sobral*fortaleza(sobral-1)
+  fimse
+  fimfuncao
+  
+inicio
+  xy=<-17
+  m<-xy mod 13
+  n<- fortaleza(m)+9
+  escreva("m=, m:4", n=",n:4)
+  fimalgoritmo
+  
+  
+Ao final da execução, serão mostrados para as variáveis M e N,
+respectivamente, os seguintes conteúdos:
