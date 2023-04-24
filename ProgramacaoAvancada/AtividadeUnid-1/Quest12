@@ -1,0 +1,11 @@
+12) Seja a função recursiva f definida como
+f(a,b) 
+
+se b = 0 então retorna a 
+
+senão
+retorna f(b, a MOD b)
+
+Onde x MOD y é o resto da divisão de x por y. O valor de f (30, 21) é:
+
+
