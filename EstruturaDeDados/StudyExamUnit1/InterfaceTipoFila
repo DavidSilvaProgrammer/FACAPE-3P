@@ -1,4 +1,5 @@
-//INTERFACE
+//INTERFACE filaSeq.h
+
 
 #define MAX 6
 
