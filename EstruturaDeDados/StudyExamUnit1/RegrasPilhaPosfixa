@@ -1,0 +1,20 @@
+Dicas iniciais:
+
+1 - Inicie como uma pilha e uma expressão posfixa vazia.
+2-Percorra a expressão infixa, da esquerda para a direita, e para
+cada lexema encontrado, faça!
+
+Dicas essencias:
+
+1- Se for um parênteses de abertura, empilho-o.
+
+2- Se for um operando, anexo-o à expressão posfixa.
+
+3- Se for um operador, enquanto a pilha não estiver vazia e o
+elemento do topo for um operador com prioridade maior ou igual
+àquela do lexema encontrado, desempilhe um operador e anexe-o à
+expressão posfixa, ao final, empilhe o lexeoma encontrado.
+
+4-Se for parêntese de fechamento,desempilhe um operador e anexe-o
+à expressão posfixa, até que o parêntese de abertura correspondente
+apareça no topo da pilha. Então, desempilhe esse parêntese e descarte-o.
