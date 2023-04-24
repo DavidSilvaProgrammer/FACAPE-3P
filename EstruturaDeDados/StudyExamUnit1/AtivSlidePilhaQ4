@@ -1,0 +1,80 @@
+/* 4-Faça uma função que retorne quantos elementos possui uma pilha. */
+
+
+/*Fazendo isso por meio do atributo topo na função tamanhoPilha:*/
+
+#define MAX 100 // define o tamanho máximo da pilha
+
+struct pilha{
+    int dados[MAX];
+    int topo;
+};
+
+typedef struct pilha Pilha;
+
+Pilha *CriarPilha(){
+    Pilha *p= (Pilha*)malloc(sizeof(Pilha));
+    p->topo=0;
+    return p;
+}
+
+int vaziaPilha(Pilha *p){
+    return(p->topo == 0);
+}
+
+int cheiaPilha(Pilha *p){
+    return (p->topo == MAX);
+}
+
+void push(Pilha *p, int item){
+    if(cheiaPilha(p)){
+        printf("ERRO: OVERFLOW!!! ");
+        printf("Nao foi possivel empilhar %d\n",item);
+    }else{
+        p->dados[p->topo]=item;
+        p->topo++;
+        printf("%d foi empilhado!\n",item);
+    }
+}
+
+int pop(Pilha *p){
+    int ret;
+    if(vaziaPilha(p)){
+        printf("ERRO: UNDERFLOW\n");
+        printf("Nao foi possivel desempilhar\n");
+        ret=-1;
+    }else{
+        ret=p->dados[p->topo-1];
+        p->topo--;
+    }
+    return ret;
+}
+
+int tamanhoPilha(Pilha *p){
+    return p->topo;
+}
+
+void liberaPilha(Pilha *p){
+    free(p);
+}
+
+
+/*Por meio de uma variável chamada contador*/.
+
+
+int tamanhoPilha(Pilha *p) {
+    Pilha *aux = CriarPilha(); // pilha auxiliar para contar os elementos
+    int contador = 0;
+    while (!vaziaPilha(p)) {
+        int item = pop(p);
+        contador++;
+        push(aux, item);
+    }
+    // restaura a pilha original empilhando todos os elementos de volta
+    while (!vaziaPilha(aux)) {
+        int item = pop(aux);
+        push(p, item);
+    }
+    liberaPilha(aux); // libera a pilha auxiliar
+    return contador;
+}
