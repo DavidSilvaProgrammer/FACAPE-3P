@@ -21,6 +21,7 @@ apareça no topo da pilha. Então, desempilhe esse parêntese e descarte-o.
 
 
 ***********************************************
+Simplificando regras:
 
 1-Empilhe paretense de abertura
 
@@ -32,3 +33,17 @@ outro com mesma prioridade ou maior.
 4- Se encontrar parêntese de fechamento, desempilhe todos
 os operadores da pilha até o parenteses de abertura, sendo
 este descartado após isso.
+****************************************************
+
+Simplificando regras mais uma vez:
+
+
+1-Empilhe paretense de abertura
+
+2-Operando vai para expressão.
+
+3-Operador vai para pilha somente após retirar de lá
+outro com mesma prioridade ou maior.
+
+4- Se encontrar parêntese de fechamento, desempilhe todos
+os operadores da pilha até o parenteses de abertura, descarte este.
