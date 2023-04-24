@@ -23,3 +23,28 @@ var
 
 
 Se for inserido como entrada o valor 14, será escrito como resposta o valor:
+
+Resolução:
+
+
+calcule(14)->tst=1->14+calcule(13)->14+92=106
+calcule(13)->tst=1->13+calcule(12)->13+79=92
+calcule(12)->tst=1->12+calcule(11)->12+67=79
+calcule(11)->tst=1->11+calcule(10)->11+56=67
+calcule(10)->tst=1->10+calcule(9)->10+46=56
+calcule(9)->tst=1->9+calcule(8)->9+37=46
+calcule(8)->tst=1->8+calcule(7)->8+29=37
+calcule(7)->tst=1->7+calcule(6)->7+22=29
+calcule(6)->tst=1->6+calcule(5)->6+16=22
+calcule(5)->tst=1->5+calcule(4)->5+11=16
+calcule(4)->tst=1->4+calcule(3)->4+7=11
+calcule(3)->tst=1->3+calcule(2)->3+4=7
+calcule(2)->tst=1->2+calcule(1)->2+2=4
+calcule(1)->tst=1->1+calcule(0)->1+1=2
+calcule(0)->tst=1->retorna 1
+
+escreva(106)
+
+Alternativa:
+
+C) 106
