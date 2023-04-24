@@ -1,0 +1,56 @@
+//IMPLEMENTAÇÃO filaSeq.c
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "filaSeq.h"
+
+void iniciar(Fila *f){
+    f->inicio=0;
+    f->fim=0;
+    f->qtd=0;
+    printf("Fila inicializada!!!\n");
+}
+int vazia(Fila f){
+    return (f.qtd == 0);
+}
+
+int cheia(Fila f){
+    return (f.qtd == MAX);
+}
+void enqueue(Fila *f,int item){
+    if(cheia(*f)){
+       printf("Fila cheia. Nao foi possivel inserir.\n"); 
+    }else{
+        f->dados[f->fim]=item;
+        f->fim++;
+        if(f->fim == MAX){
+            f->fim=0;
+        }
+        f->qtd++;
+        printf("%d foi enfileirado.\n",item);
+    }
+}
+
+int dequeue(Fila *f){
+    int ret;
+    if(vazia(*f)){
+        printf("Fila vazia.Nao foi possivel remover.\n");
+            ret=-1;
+    }else{
+        ret=f->dados[f->inicio];
+        f->inicio++;
+        if(f->inicio == MAX){
+            f->inicio=0;
+        }
+        f->qtd--;
+    }
+    return ret;
+}
+
+void  mostrarFila(Fila f){
+    printf("[ ");
+    while(!vazia(f)){
+        printf("%d ",dequeue(&f));
+    }
+    printf("]\n");
+}
