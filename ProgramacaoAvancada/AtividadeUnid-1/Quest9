@@ -1,0 +1,24 @@
+9) Quando uma função chama a si própria, denomina-se de função recursiva. Para tanto,
+deve-se observar o uso de critérios de parada e parâmetros da chamada recursiva. Um
+exemplo clássico é a série de Fibonacci. Os comandos a seguir estão sem o uso da
+função recursiva em linguagem C.
+
+int fibonacci(int a){
+    int i,z,x=0,y=1;
+    for(i=0;i<a;i++){
+        z=x+y;
+        x=y;
+        y=z;
+    }
+    return x;
+}
+
+
+Para se obter a série de Fibonacci por meio de função recursiva com as informações dos
+comandos anteriores, deve ser utilizado o algoritmo da letra:
+
+C) 1 int fibonacci (int a) {
+2 if (a= 0 || a=1)
+3 return a;
+4 else
+5 return fibonacci (a-1) + fibonacci (
