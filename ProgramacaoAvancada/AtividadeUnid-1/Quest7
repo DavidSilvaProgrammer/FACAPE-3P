@@ -1,0 +1,25 @@
+
+Algoritmo "ALG1"
+var
+    entrada:inteiro
+    resposta:inteiro
+    tst:inteiro
+    
+    funcao calcule(aux:inteiro):inteiro
+    inicio
+        tst<-1
+        se(aux=0)entao
+            retorne tst
+        senao
+            retorne aux+calcule(aux-1)
+            fimse
+        fimfuncao
+        
+        inicio
+            leia(entrada)
+            resposta<-calcule(entrada)
+            escreva(resposta)
+        fimalgoritmo
+
+
+Se for inserido como entrada o valor 14, será escrito como resposta o valor:
