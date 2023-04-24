@@ -4,7 +4,7 @@ Regras gerais:
 1-Inicie com uma pilha vazia.
 
 2-Percorra a expressão posfixa, da esquerda para direita, e
-para cada lexaoma encontrado faça: *referente a regras especificas*.
+para cada lexeoma encontrado faça: *referente às regras especificas*.
 
 3-Depois que percorrer completamente a expressão, o resultado estará
 na pilha, desempilhe-o.
