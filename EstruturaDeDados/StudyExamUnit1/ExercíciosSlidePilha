@@ -1,6 +1,6 @@
 Exercícios:
 
-1-A operação top retorna uma cópai do elmento que está no topo da pilha,
+1-A operação top retorna uma cópia do elemento que está no topo da pilha,
 sem removê-lo. Acrescente esta operação no tipo pilha.
 
 2-Faça um procedimento para verificar se um dado elemento se encontra em
