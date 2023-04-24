@@ -1,0 +1,22 @@
+Como converter de infixa para posfixa:
+
+Regras gerais:
+1-Inicie com uma pilha vazia.
+
+2-Percorra a expressão posfixa, da esquerda para direita, e
+para cada lexaoma encontrado faça: *referente a regras especificas*.
+
+3-Depois que percorrer completamente a expressão, o resultado estará
+na pilha, desempilhe-o.
+
+Regras específicas:
+
+1- Se for operando, empilhe-o.
+
+2- Se for operador, desempilher os dois últimos 
+operandos empilhados, efetue a operação e empilhe o resultado.
+
+
+
+
+
