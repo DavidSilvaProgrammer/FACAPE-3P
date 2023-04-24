@@ -22,3 +22,28 @@ inicio
   
 Ao final da execução, serão mostrados para as variáveis M e N,
 respectivamente, os seguintes conteúdos:
+
+Resolução:
+
+
+nr,xy=17,m=xy mod 13,n=fortaleza(m)+9
+
+
+escreva"m= "m:4,"n= ",n:4)
+
+
+m=17mod13 -> 4
+
+fortaleza(4) -> senao 4*fortaleza(3)->4*6=24
+fortaleza(3) -> senao 3*fortaleza(2)->3*2=6
+fortaleza(2) -> senao 2*fortaleza(1)->2*1=2
+fortaleza(1) -> se retorna 1
+
+
+n=24+9->33
+
+escreva(4;33)
+
+Alternativa correta:
+
+C) 4 e 33.
