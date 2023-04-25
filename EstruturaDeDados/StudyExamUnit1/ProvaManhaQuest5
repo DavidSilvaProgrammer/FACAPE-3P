@@ -1,0 +1,11 @@
+int iguais(Pilha p1, Pilha p2){
+    while(!vaziaP(p1) && !vaziaP(p2)){
+        if (pop(&p1) != pop(&p2)){
+            return 0;
+        }
+    }
+    if(!vaziaP(p1) || !vaziaP(p2)){
+        return 0;
+    }
+    return 1;
+}
