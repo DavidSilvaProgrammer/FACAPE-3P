@@ -1,0 +1,15 @@
+Fila intercala(Fila f1, Fila f2){
+    Fila f3;
+    iniciar(&f3);
+    while(!vazia(f1) && !vazia(f2)){
+        enqueue(&f3,dequeue(&f1));
+        enqueue(&f3,dequeue(&f2));
+    }
+    while(!vazia(f1)){
+        enqueue(&f3,dequeue(&f1));
+    }
+    while(!vazia(f2)){
+        enqueue(&f3,dequeue(&f2));
+    }
+    return f3;
+}
