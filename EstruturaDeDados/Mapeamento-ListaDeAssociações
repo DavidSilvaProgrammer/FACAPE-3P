@@ -1,0 +1,100 @@
+typedef int Chave;
+typedef char Valor[30]
+typedef struct map* Map;
+
+struct map{
+    Chave chave;
+    Valor valor;
+    Map prox;
+};
+
+//Função para criar um nó com os respectivos valores passados
+//como parâmetros:
+
+Map no_map(Chave c, Valor v, Map p){
+    Map novo=(Map)malloc(sizeof(struct map));
+    novo->chave = c;
+    strcpy(novo->valor,v);
+    novo->prox=p;
+    return novo;
+}
+
+//Função para inserção de um nó em um mapeamento:
+
+void inserir(Chave c, Valor v, Map *M){
+    while(*M != NULL && (*M)->chave < c){
+        M=&(*M)->prox;
+    }
+    if(*M != NULL && (*M)->chave == c){
+        strcpy((*M)->valor,v);
+    }else{
+        *M=no_map(c,v*M);
+    }
+}
+
+//Função para remoção de uma chave em um mapeamento:
+
+int remover(Chave c, Map *M){
+    while(*M != NULL && (*M)->chave<c){
+        M=&(*M)->prox;
+    }
+    if(*M==NULL || (*M)->chave>c){
+        return 0;
+    }else{
+        Map aux = *M;
+        *M= aux->prox;
+        free(aux);
+        return 1;
+    }
+}
+
+
+//Removendo uma chave em um mapeamento
+
+if(remover(789,&m)){
+    printf("Chave removida\n");
+    }else{
+        printf("chave inexistente\n");
+    }
+
+//Função para pesquisar uma chave em um mapeamento:
+
+int pertence(Chave c, Valor v, Map M){
+    while(M != NULL && M->chave == c){
+        strcpy(v, M->valor);
+    }
+    return (M != NULL && m->chave == c);
+}
+
+//Pesquisando uma chave em um mapeamento
+
+if(pertence(789,v,m)){
+    printf("Chave encontrada: %s\n", v);
+}else{
+    printf("chave inexistente\n");
+}
+
+//Função para exibir os elementos do mapeamento:
+
+void exibe(Map M){
+    printf("[");
+    while(M != NULL){
+        printf("(%d : %s)",M->chave,M->valor);
+        if(M->prox != NULL){
+           print(", "); 
+        }
+        M=M->prox;
+    }
+    printf("]\n");
+}
+
+//Função para destruir um mapeamento:
+
+void destroi(Map *M){
+    Map aux;
+    while(*M != NULL){
+        aux = *M;
+        *M=aux->prox;
+        free(aux);
+    }
+}
