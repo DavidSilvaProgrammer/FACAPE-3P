@@ -1,0 +1,13 @@
+O programa entra em um loop infinito porque o algoritmo guloso implementado pode não conseguir encontrar uma solução ótima para todas as 
+combinações de moedas disponíveis. Isso ocorre porque o algoritmo escolhe sempre a 
+moeda de maior valor possível a cada iteração do loop, o que pode levar a situações em que não é possível formar 
+a quantidade exata desejada com as moedas disponíveis.
+
+No exemplo dado, a lista de moedas [1, 1, 1, 1, 10, 10, 15] não permite a formação do troco de 20 centavos usando o 
+algoritmo guloso implementado. O algoritmo vai começar escolhendo a moeda de 15 centavos, mas não será possível completar 
+o troco restante de 5 centavos apenas com as outras moedas disponíveis. Por isso, o loop fica rodando indefinidamente, 
+já que não há uma condição de parada para esse tipo de situação.
+
+Para resolver esse problema, seria necessário implementar um algoritmo mais sofisticado que permita explorar todas 
+as combinações possíveis de moedas até encontrar a solução ótima. O algoritmo guloso, por sua natureza, não é capaz 
+de garantir a solução ótima em todos os casos.
