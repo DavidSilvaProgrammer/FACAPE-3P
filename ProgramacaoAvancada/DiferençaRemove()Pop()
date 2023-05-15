@@ -10,3 +10,17 @@ Tanto o método remove() quanto o método pop() são usados para remover element
 Em resumo, o método remove() é usado para remover um elemento específico pelo seu valor, enquanto o método pop() é usado para remover um elemento 
 pelo seu índice e retorná-lo. 
 Em alguns casos, um método pode ser mais adequado que o outro, dependendo do objetivo do programa.
+
+Sim, isso mesmo. O método remove() remove apenas a primeira ocorrência do valor especificado na lista. Se houver mais elementos com o mesmo valor, eles permanecerão na lista. Por exemplo, considere a seguinte lista:
+
+
+lista = [1, 2, 3, 2, 4]
+
+Se usarmos lista.remove(2), apenas o primeiro elemento com o valor 2 (índice 1) 
+será removido, e a lista ficará assim:
+
+css
+
+lista = [1, 3, 2, 4]
+
+O segundo elemento com o valor 2 (índice 3) ainda permanece na lista.
