@@ -1,0 +1,34 @@
+def troco_guloso(valor, moedas):
+    troco = []
+    for moeda in sorted(moedas, reverse=True):
+        while valor >= moeda and valor - moeda >= min(moedas):
+            troco.append(moeda)
+            valor -= moeda
+    if valor != 0:
+        print("Não é possível dar troco com essas moedas.")
+    else:
+        return troco
+        
+moedas = [1, 5, 10, 25]
+valor = 63
+
+print(troco_guloso(valor, moedas))
+
+Para garantir que o algoritmo guloso não exceda o valor total disponível, 
+podemos adicionar uma verificação extra no código que interrompe o processo de seleção 
+de moedas quando o valor restante a ser alcançado for menor que a menor moeda disponível.
+
+Por exemplo, podemos modificar a função troco_guloso da seguinte forma:
+
+Código em cima.
+
+Nesse caso, estamos adicionando uma condição extra ao while que verifica se o valor restante a ser alcançado 
+é maior ou igual à menor moeda disponível. Se essa condição não for satisfeita, o while será interrompido e 
+o processo de seleção de moedas será encerrado.
+
+Além disso, estamos adicionando um bloco if-else que verifica se o valor restante a ser alcançado é zero após a 
+seleção de moedas. Se o valor não for zero, significa que não foi possível dar o troco com as moedas disponíveis 
+e uma mensagem de erro é exibida. Caso contrário, a lista de moedas selecionadas é retornada.
+
+Dessa forma, estamos garantindo que o algoritmo não selecione mais moedas do que o necessário e que não 
+tente dar um troco maior do que o valor total disponível.
