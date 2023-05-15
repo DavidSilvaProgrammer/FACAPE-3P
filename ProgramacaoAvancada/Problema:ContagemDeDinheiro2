@@ -1,0 +1,63 @@
+def contar_troco(valor, moedas):
+    troco = []
+    while valor > 0:
+        for moeda in sorted(moedas, reverse=True):
+            if valor >= moeda:
+                troco.append(moeda)
+                valor -= moeda
+                moedas.remove(moeda)
+                break
+        else:
+            print("Erro: não há moedas suficientes para cobrir o troco.")
+            return []
+    return troco
+
+def contar_troco(valor, moedas):
+    troco = []
+    while valor > 0:
+        for moeda in sorted(moedas, reverse=True):
+            if valor >= moeda:
+                troco.append(moeda)
+                valor -= moeda
+                moedas.remove(moeda)
+                break
+        else:
+            return "Erro: não há moedas suficientes para cobrir o troco."
+    return troco
+
+moedas = [1, 1, 1, 1, 10, 10, 15]
+valor = 20
+troco = contar_troco(valor, moedas)
+print(troco)
+
+
+
+def contar_troco(valor, moedas):
+    troco = []
+    while valor > 0:
+        for moeda in sorted(moedas, reverse=True):
+            if valor >= moeda:
+                troco.append(moeda)
+                valor -= moeda
+                moedas.remove(moeda)
+                break
+        else:
+            return "Erro: não há moedas suficientes para cobrir o troco."
+    return troco
+
+moedas = [1, 1, 1, 1, 10, 10, 15]
+valor = 20
+troco = contar_troco(valor, moedas)
+print(troco)
+
+
+
+
+O incremento que eu sugeri é uma verificação que é feita a cada iteração do loop for. O objetivo é verificar se a lista de moedas ficou vazia, o que pode acontecer caso o valor requerido pelo usuário seja maior do que a soma de todas as moedas disponíveis.
+
+O else nesse caso está associado ao loop for, não ao while. No Python, o else em um loop for é executado após todas as iterações terem sido concluídas, desde que o loop não tenha sido interrompido por um break. Ou seja, no código que eu sugeri, o else é executado após o for ter percorrido todas as moedas disponíveis e adicionado as necessárias ao troco. O else verifica se a lista de moedas ficou vazia e, se sim, imprime uma mensagem de erro. Caso contrário, o programa retorna o troco calculado normalmente.
+
+E o for faz o que nesse código?
+
+
+O for é utilizado para iterar sobre a lista moedas, na ordem crescente de valor das moedas. Ou seja, o programa começa tentando usar a moeda de maior valor possível para pagar o troco, e vai descendo na lista de moedas até a moeda de menor valor possível. Essa abordagem é conhecida como algoritmo guloso, e é utilizada para tentar minimizar a quantidade de moedas utilizadas para pagar o troco.
