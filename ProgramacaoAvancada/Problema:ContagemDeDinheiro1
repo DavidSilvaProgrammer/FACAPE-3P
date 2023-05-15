@@ -16,3 +16,20 @@ print(troco)
 
 
 //[25, 5, 1, 1]
+
+/*
+
+No código apresentado anteriormente, não há nenhuma verificação para garantir que uma moeda já utilizada 
+não seja usada novamente. Isso significa que, se houver duas moedas com o mesmo valor no 
+conjunto de moedas, ambas podem ser usadas para representar o troco.
+
+Para evitar que uma moeda já utilizada seja usada novamente, uma abordagem possível é remover 
+a moeda utilizada do conjunto de moedas a cada iteração do loop. Isso pode ser feito usando o 
+método remove() da lista de moedas.
+
+Com essa modificação, a moeda utilizada é removida do conjunto de moedas a cada iteração, 
+garantindo que ela não seja usada novamente. No entanto, é importante lembrar que essa abordagem 
+pode não ser eficiente em todos os casos e que, em alguns casos, pode ser necessário considerar 
+o uso de outras técnicas mais sofisticadas para encontrar a solução ótima.
+
+*/
