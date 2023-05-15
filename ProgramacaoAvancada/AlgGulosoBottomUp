@@ -1,0 +1,13 @@
+O algoritmo guloso geralmente segue uma abordagem bottom-up, onde o processo de tomada de decisão começa no nível mais baixo e progride 
+em direção ao nível superior.
+
+Isso significa que, em cada passo do algoritmo, é feita uma escolha localmente ótima que leva à solução globalmente ótima. 
+O algoritmo avalia as possibilidades em cada etapa e seleciona a melhor opção, 
+com base nas informações disponíveis até aquele ponto.
+
+No entanto, em alguns casos, o algoritmo guloso pode seguir uma abordagem top-down, onde a solução global é dividida em subproblemas 
+menores e as soluções são construídas a partir desses subproblemas.
+
+No entanto, independentemente da abordagem, o algoritmo guloso busca maximizar ou minimizar uma função objetivo em cada etapa, fazendo 
+escolhas locais que levam à solução globalmente ótima, mas sem garantia de que a solução encontrada seja a ótima em todos os casos.
+
