@@ -1,0 +1,18 @@
+def contar_troco(valor, moedas):
+    troco = []
+    while valor > 0:
+        for moeda in sorted(moedas, reverse=True):
+            if valor >= moeda:
+                troco.append(moeda)
+                valor -= moeda
+                moedas.remove(moeda)
+                break
+    return troco
+
+moedas = [1, 1, 1, 1, 1, 5, 5, 10, 10, 25]
+valor = 32
+troco = contar_troco(valor, moedas)
+print(troco)
+
+
+//[25, 5, 1, 1]
