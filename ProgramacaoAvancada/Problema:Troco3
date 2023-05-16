@@ -1,0 +1,20 @@
+def contar_troco(valor, moedas):
+    troco = []
+    while valor > 0:
+        for moeda in sorted(moedas, reverse=True):
+            if valor >= moeda:
+                troco.append(moeda)
+                valor -= moeda
+                moedas.remove(moeda)
+                break
+        else:
+            return "Erro: não há moedas suficientes para cobrir o troco."
+    return troco
+
+moedas = [1, 1, 1, 1, 1, 10, 10, 15]
+valor = 20
+
+troco = contar_troco(valor, moedas)
+
+print(troco)  # Saída: [15, 1, 1, 1, 1, 1]
+print("Número de moedas:", len(troco))  # Saída: 6
