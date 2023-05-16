@@ -1,0 +1,19 @@
+def contar_troco(valor, moedas):
+    moedas.sort(reverse=True)  # Ordena as moedas em ordem decrescente
+    troco = []  # Lista para armazenar as moedas utilizadas
+
+    for moeda in moedas:
+        while valor >= moeda:
+            valor -= moeda
+            troco.append(moeda)
+
+    return troco
+
+moedas_disponiveis = [1, 5, 10, 25]
+valor_troco = 63
+
+moedas_utilizadas = contar_troco(valor_troco, moedas_disponiveis)
+numero_moedas = len(moedas_utilizadas)
+
+print("Número de moedas necessárias:", numero_moedas)
+print("Moedas utilizadas:", moedas_utilizadas)
