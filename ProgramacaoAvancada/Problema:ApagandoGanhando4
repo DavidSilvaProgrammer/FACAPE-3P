@@ -14,3 +14,10 @@ numero_lousa = '1231239'
 digitos_apagar = 3
 premio = selecionar_premio(numero_lousa, digitos_apagar)
 print("Prêmio em dinheiro:", premio)
+
+Nesta implementação, percorremos o número na lousa e, em cada iteração, removemos o dígito mínimo encontrado. 
+Fazemos isso repetidamente até que a quantidade desejada de dígitos seja apagada. Em seguida, convertemos o número 
+resultante em um inteiro e retornamos como o prêmio em dinheiro.
+
+No exemplo fornecido, o número na lousa é "1231239" e devemos apagar 3 dígitos. O algoritmo guloso seleciona os dígitos mínimos 
+(1, 1 e 2) para apagar e o prêmio resultante é calculado como o número restante "3239", que é exibido na saída.
