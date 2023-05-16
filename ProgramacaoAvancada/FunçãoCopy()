@@ -1,0 +1,17 @@
+Usar o sinal de igualdade (=) para atribuir uma lista a uma nova variável não cria uma cópia da lista. Em vez disso, ambas as variáveis estarão se referindo à mesma lista na memória. Isso significa que qualquer modificação feita em uma das variáveis também afetará a outra.
+
+Nesse contexto, quando você precisa criar uma cópia independente da lista, é necessário usar a função copy() para garantir que você esteja trabalhando com uma lista separada. A função copy() cria uma cópia superficial da lista, ou seja, cria um novo objeto lista contendo os mesmos elementos da lista original.
+
+Se você simplesmente usar o sinal de igualdade para atribuir a lista a uma nova variável, qualquer modificação feita em uma das variáveis será refletida na outra, como no exemplo a seguir:
+
+python
+
+moedas = [1, 5, 10, 25]
+moedas_disponiveis = moedas
+
+moedas_disponiveis.remove(10)
+print(moedas)  # Saída: [1, 5, 25]
+
+Nesse caso, a remoção do elemento 10 na lista moedas_disponiveis também modifica a lista moedas, porque ambas as variáveis estão se referindo à mesma lista na memória.
+
+Ao usar a função copy() como mostrado no código anteriormente fornecido, você cria uma nova lista independente, permitindo que as duas listas sejam modificadas separadamente sem afetar uma à outra.
