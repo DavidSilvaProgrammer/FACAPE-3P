@@ -1,0 +1,16 @@
+def selecionar_premio(numero, digitos_a_apagar):
+    if digitos_a_apagar >= len(numero):
+        return 0  # Caso em que todos os dígitos são apagados, o prêmio é zero
+
+    for _ in range(digitos_a_apagar):
+        minimo = min(numero)
+        numero = numero.replace(minimo, '', 1)  # Remove o dígito mínimo encontrado
+
+    premio = int(numero)
+    return premio
+
+
+numero_lousa = '1231239'
+digitos_apagar = 3
+premio = selecionar_premio(numero_lousa, digitos_apagar)
+print("Prêmio em dinheiro:", premio)
