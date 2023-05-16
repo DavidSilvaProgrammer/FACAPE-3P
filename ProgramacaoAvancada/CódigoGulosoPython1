@@ -32,3 +32,27 @@ e uma mensagem de erro é exibida. Caso contrário, a lista de moedas selecionad
 
 Dessa forma, estamos garantindo que o algoritmo não selecione mais moedas do que o necessário e que não 
 tente dar um troco maior do que o valor total disponível.
+
+
+
+
+def contar_dinheiro(valor, moedas):
+    dinheiro_cliente = []
+    while valor > 0:
+        for moeda in sorted(moedas, reverse=True):
+            if valor >= moeda:
+                dinheiro_cliente.append(moeda)
+                valor -= moeda
+                moedas.remove(moeda)
+                break
+    return dinheiro_cliente
+
+moedas = [1, 1, 1, 1, 1, 5, 5, 10, 10, 25]
+valor = 32
+dinheiro_cliente = contar_dinheiro(valor, moedas)
+print(dinheiro_cliente)
+
+
+
+
+
