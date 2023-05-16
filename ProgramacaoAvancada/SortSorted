@@ -1,0 +1,23 @@
+lista = [3, 1, 4, 2]
+lista.sort()
+print(lista)  # Saída: [1, 2, 3, 4]
+
+A diferença entre a função sort e a função sorted em Python está relacionada ao efeito que cada uma delas tem sobre a lista ou iterável em que são aplicadas.
+
+A função sort é um método das listas em Python e modifica a própria lista, ordenando seus elementos em ordem crescente ou decrescente. Por exemplo:
+
+
+Observe que a lista original é alterada. O método sort não retorna uma nova lista, ele opera diretamente na lista existente.
+
+Por outro lado, a função sorted é uma função embutida em Python que retorna uma nova lista contendo os elementos ordenados do 
+iterável fornecido. A lista original não é modificada. Por exemplo:
+
+lista = [3, 1, 4, 2]
+nova_lista = sorted(lista)
+print(nova_lista)  # Saída: [1, 2, 3, 4]
+print(lista)  # Saída: [3, 1, 4, 2]
+
+Nesse caso, a função sorted retorna uma nova lista ordenada, preservando a lista original sem alterações.
+
+
+
