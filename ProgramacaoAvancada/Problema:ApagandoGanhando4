@@ -21,3 +21,21 @@ resultante em um inteiro e retornamos como o prêmio em dinheiro.
 
 No exemplo fornecido, o número na lousa é "1231239" e devemos apagar 3 dígitos. O algoritmo guloso seleciona os dígitos mínimos 
 (1, 1 e 2) para apagar e o prêmio resultante é calculado como o número restante "3239", que é exibido na saída.
+
+
+def selecionar_premio(numero, digitos_a_apagar):
+    if digitos_a_apagar >= len(numero):
+        return 0  # Caso em que todos os dígitos são apagados, o prêmio é zero
+
+    for _ in range(digitos_a_apagar):
+        minimo = min(numero)
+        numero = numero.replace(minimo, '', 1)  # Remove o dígito mínimo encontrado
+
+    premio = int(numero)
+    return premio
+
+
+numero_lousa = '10000019'
+digitos_apagar = 4
+premio = selecionar_premio(numero_lousa, digitos_apagar)
+print("Prêmio em dinheiro:", premio)
