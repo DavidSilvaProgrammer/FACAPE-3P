@@ -1,0 +1,28 @@
+Para ordenar uma lista em ordem decrescente usando o método sort em Python, você pode usar o parâmetro reverse=True. Aqui está um exemplo:
+
+python
+
+lista = [3, 1, 4, 2]
+lista.sort(reverse=True)
+print(lista)  # Saída: [4, 3, 2, 1]
+
+Ao passar reverse=True como argumento para o método sort, a lista será ordenada em ordem decrescente.
+
+Observe que, diferentemente da função sorted, o método sort modifica a própria lista, em vez de retornar uma nova lista ordenada. Portanto, após chamar o método sort, a lista original será alterada e estará em ordem decrescente.
+
+É possível utilizar a sintaxe lista.sort()[::-1] para ordenar a lista em ordem decrescente usando o método sort em Python.
+
+Essa sintaxe realiza a ordenação crescente utilizando o método sort e, em seguida, aplica o fatiamento [::-1] para inverter a ordem dos elementos, resultando em uma lista ordenada em ordem decrescente.
+
+Aqui está um exemplo:
+
+lista = [3, 1, 4, 2]
+lista.sort()[::-1]
+print(lista)  # Saída: [4, 3, 2, 1]
+
+
+Essa abordagem é válida e produzirá o mesmo resultado que utilizar lista.sort(reverse=True). No entanto, é importante observar que a sintaxe lista.sort()[::-1] 
+não é tão eficiente quanto lista.sort(reverse=True), pois envolve a criação de uma nova lista ao aplicar o fatiamento. 
+Portanto, em termos de desempenho, é preferível utilizar lista.sort(reverse=True) para ordenar em ordem decrescente.
+
+
